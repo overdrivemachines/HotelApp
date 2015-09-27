@@ -31,5 +31,13 @@ module HotelApp
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # Disable generation of helpers, javascripts, and css
+    #       from: https://robots.thoughtbot.com/reduce-application-clutter-disable-unwanted-rails
+    config.generators do |generate|
+        generate.helper false
+        generate.assets false
+    end
+
   end
 end
