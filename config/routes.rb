@@ -1,6 +1,14 @@
 # == Route Map
 #
 #                   Prefix Verb   URI Pattern                      Controller#Action
+#                   guests GET    /guests(.:format)                guests#index
+#                          POST   /guests(.:format)                guests#create
+#                new_guest GET    /guests/new(.:format)            guests#new
+#               edit_guest GET    /guests/:id/edit(.:format)       guests#edit
+#                    guest GET    /guests/:id(.:format)            guests#show
+#                          PATCH  /guests/:id(.:format)            guests#update
+#                          PUT    /guests/:id(.:format)            guests#update
+#                          DELETE /guests/:id(.:format)            guests#destroy
 #             reservations GET    /reservations(.:format)          reservations#index
 #                          POST   /reservations(.:format)          reservations#create
 #          new_reservation GET    /reservations/new(.:format)      reservations#new
