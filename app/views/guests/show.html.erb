@@ -1,0 +1,74 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @guest.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @guest.last_name %>
+</p>
+
+<p>
+  <strong>Address line1:</strong>
+  <%= @guest.address_line1 %>
+</p>
+
+<p>
+  <strong>Address line2:</strong>
+  <%= @guest.address_line2 %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @guest.city %>
+</p>
+
+<p>
+  <strong>Zip:</strong>
+  <%= @guest.zip %>
+</p>
+
+<p>
+  <strong>Phone1:</strong>
+  <%= @guest.phone1 %>
+</p>
+
+<p>
+  <strong>Phone2:</strong>
+  <%= @guest.phone2 %>
+</p>
+
+<p>
+  <strong>Id type:</strong>
+  <%= @guest.id_type %>
+</p>
+
+<p>
+  <strong>Dob:</strong>
+  <%= @guest.dob %>
+</p>
+
+<p>
+  <strong>Id state:</strong>
+  <%= @guest.id_state %>
+</p>
+
+<p>
+  <strong>Id number:</strong>
+  <%= @guest.id_number %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @guest.email %>
+</p>
+
+<p>
+  <strong>Reservation:</strong>
+  <%= @guest.reservation %>
+</p>
+
+<%= link_to 'Edit', edit_guest_path(@guest) %> |
+<%= link_to 'Back', guests_path %>
