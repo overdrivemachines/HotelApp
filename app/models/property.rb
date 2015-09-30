@@ -18,4 +18,5 @@
 
 class Property < ActiveRecord::Base
 	has_many :users
+	has_many :room_types
 end
