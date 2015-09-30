@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Property:</strong>
+  <%= @reservation.property %>
+</p>
+
+<p>
+  <strong>Arrival date:</strong>
+  <%= @reservation.arrival_date %>
+</p>
+
+<p>
+  <strong>Departure date:</strong>
+  <%= @reservation.departure_date %>
+</p>
+
+<p>
+  <strong>Adults:</strong>
+  <%= @reservation.adults %>
+</p>
+
+<p>
+  <strong>Children:</strong>
+  <%= @reservation.children %>
+</p>
+
+<p>
+  <strong>Room type:</strong>
+  <%= @reservation.room_type %>
+</p>
+
+<p>
+  <strong>Room:</strong>
+  <%= @reservation.room %>
+</p>
+
+<p>
+  <strong>Rate:</strong>
+  <%= @reservation.rate %>
+</p>
+
+<%= link_to 'Edit', edit_reservation_path(@reservation) %> |
+<%= link_to 'Back', reservations_path %>

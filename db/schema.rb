@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150930051041) do
+ActiveRecord::Schema.define(version: 20150930052957) do
 
   create_table "properties", force: :cascade do |t|
     t.string   "name"
@@ -37,6 +37,19 @@ ActiveRecord::Schema.define(version: 20150930051041) do
   end
 
   add_index "room_types", ["property_id"], name: "index_room_types_on_property_id"
+
+  create_table "rooms", force: :cascade do |t|
+    t.integer  "property_id"
+    t.integer  "room_number"
+    t.integer  "room_type_id"
+    t.string   "location"
+    t.string   "status"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "rooms", ["property_id"], name: "index_rooms_on_property_id"
+  add_index "rooms", ["room_type_id"], name: "index_rooms_on_room_type_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
