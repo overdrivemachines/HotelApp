@@ -9,6 +9,7 @@ class CreateReservations < ActiveRecord::Migration
       t.references :room_type, index: true, foreign_key: true
       t.references :room, index: true, foreign_key: true
       t.float :rate
+      t.text :notes
 
       t.timestamps null: false
     end

@@ -13,6 +13,7 @@
       <th>Room type</th>
       <th>Room</th>
       <th>Rate</th>
+      <th>Notes</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -28,6 +29,7 @@
         <td><%= reservation.room_type %></td>
         <td><%= reservation.room %></td>
         <td><%= reservation.rate %></td>
+        <td><%= reservation.notes %></td>
         <td><%= link_to 'Show', reservation %></td>
         <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
         <td><%= link_to 'Destroy', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>

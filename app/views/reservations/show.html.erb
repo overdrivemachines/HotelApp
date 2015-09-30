@@ -40,5 +40,10 @@
   <%= @reservation.rate %>
 </p>
 
+<p>
+  <strong>Notes:</strong>
+  <%= @reservation.notes %>
+</p>
+
 <%= link_to 'Edit', edit_reservation_path(@reservation) %> |
 <%= link_to 'Back', reservations_path %>
