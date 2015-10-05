@@ -21,3 +21,13 @@ users = User.create(
 	]
 )
 
+room_types = Room_type.create(
+	[
+		{ property_id: properties[0], code: "NQ1", name: "Non-Smoking Queen", description: "This is a Non-Smoking room that has a Queen sized bed." }
+		{ property_id: properties[0], code: "Q1", name: "Smoking Queen", description: "This is a Smoking room that has a Queen sized bed." }
+		{ property_id: properties[0], code: "NK1", name: "Non-Smoking King", description: "This is a Non-Smoking room that has a King sized bed." }
+		{ property_id: properties[0], code: "K1", name: "Smoking King", description: "This is a Smoking room that has a King sized bed." }
+	]
+)
+
+
