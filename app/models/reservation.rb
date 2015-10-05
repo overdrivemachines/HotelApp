@@ -15,6 +15,12 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
+# Indexes
+#
+#  index_reservations_on_property_id   (property_id)
+#  index_reservations_on_room_id       (room_id)
+#  index_reservations_on_room_type_id  (room_type_id)
+#
 
 class Reservation < ActiveRecord::Base
   belongs_to :property

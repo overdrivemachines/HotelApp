@@ -20,6 +20,10 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
+# Indexes
+#
+#  index_guests_on_reservation_id  (reservation_id)
+#
 
 class Guest < ActiveRecord::Base
   belongs_to :reservation
