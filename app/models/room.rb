@@ -7,7 +7,7 @@
 #  room_number  :integer
 #  room_type_id :integer
 #  location     :string
-#  status       :string
+#  status       :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
