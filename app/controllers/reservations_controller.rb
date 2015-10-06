@@ -4,7 +4,8 @@ class ReservationsController < ApplicationController
   # GET /reservations
   # GET /reservations.json
   def index
-    @reservations = Reservation.all
+    # @reservations = Reservation.all
+    @reservations = Reservation.where(property_id: params[:property_id])
   end
 
   # GET /reservations/1
