@@ -15,19 +15,29 @@ properties = Property.create(
 
 users = User.create(
 	[
-		{ email: 'a@a.com', password: 'a', password_confirmation: 'a', firstname: "", lastname: "", property_id: properties[0]},
-		{ email: 'b@b.com', password: 'b', password_confirmation: 'b', firstname: "", lastname: "", property_id: properties[1]},
-		{ email: 'c@c.com', password: 'c', password_confirmation: 'c', firstname: "", lastname: "", property_id: properties[0]}
+		{ email: 'a@a.com', password: 'a', password_confirmation: 'a', firstname: "", lastname: "", property_id: properties[0].id},
+		{ email: 'b@b.com', password: 'b', password_confirmation: 'b', firstname: "", lastname: "", property_id: properties[1].id},
+		{ email: 'c@c.com', password: 'c', password_confirmation: 'c', firstname: "", lastname: "", property_id: properties[0].id}
 	]
 )
 
-room_types = Room_type.create(
+room_types = RoomType.create(
 	[
-		{ property_id: properties[0], code: "NQ1", name: "Non-Smoking Queen", description: "This is a Non-Smoking room that has a Queen sized bed." }
-		{ property_id: properties[0], code: "Q1", name: "Smoking Queen", description: "This is a Smoking room that has a Queen sized bed." }
-		{ property_id: properties[0], code: "NK1", name: "Non-Smoking King", description: "This is a Non-Smoking room that has a King sized bed." }
-		{ property_id: properties[0], code: "K1", name: "Smoking King", description: "This is a Smoking room that has a King sized bed." }
+		{ property_id: properties[0].id, code: "NQ1", name: "Non-Smoking Queen", description: "This is a Non-Smoking room that has a Queen sized bed." },
+		{ property_id: properties[0].id, code: "Q1", name: "Smoking Queen", description: "This is a Smoking room that has a Queen sized bed." },
+		{ property_id: properties[0].id, code: "NK1", name: "Non-Smoking King", description: "This is a Non-Smoking room that has a King sized bed." },
+		{ property_id: properties[0].id, code: "K1", name: "Smoking King", description: "This is a Smoking room that has a King sized bed." }
 	]
 )
 
+rooms = Room.create(
+	[
+		{ property_id: properties[0].id, room_number: 101, room_type_id: room_types[0].id, status: :clean },
+		{ property_id: properties[0].id, room_number: 102, room_type_id: room_types[0].id, status: :clean },
+		{ property_id: properties[0].id, room_number: 103, room_type_id: room_types[0].id, status: :clean },
+		{ property_id: properties[0].id, room_number: 104, room_type_id: room_types[1].id, status: :clean },
+		{ property_id: properties[0].id, room_number: 105, room_type_id: room_types[2].id, status: :clean },
+		{ property_id: properties[0].id, room_number: 106, room_type_id: room_types[3].id, status: :clean }
+	]
+)
 
