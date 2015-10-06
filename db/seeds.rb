@@ -40,4 +40,3 @@ rooms = Room.create(
 		{ property_id: properties[0].id, room_number: 106, room_type_id: room_types[3].id, status: :clean }
 	]
 )
-
