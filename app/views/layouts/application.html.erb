@@ -1,35 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>HotelApp</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+	<title>HotelApp</title>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
 </head>
 <body>
 
-<p class="navbar-text pull-right">
 <% if user_signed_in? %>
-  Logged in as <strong><%= current_user.email %></strong>.
-  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-  <br>
-  My property is: <%= current_user.property.name %>
-  <br>
-  <%= link_to "Home", root_path %>
+	Logged in as <strong><%= current_user.email %></strong>.
+	<%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+	<%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+	<br>
+	My property is: <%= current_user.property.name %>
+	<br>
+	<%= link_to "Home", root_path %>
 <% else %>
-  <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+	<%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+	<%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
 <% end %>
 
 <% if notice %>
-  <p class="alert alert-success"><%= notice %></p>
+	<p class="alert alert-success"><%= notice %></p>
 <% end %>
 <% if alert %>
-  <p class="alert alert-danger"><%= alert %></p>
+	<p class="alert alert-danger"><%= alert %></p>
 <% end %>
 
+<p><%= params.inspect %></p>
+
+<header>
+	<div class="header-container">
+		<div class="">HotelApp</div>
+		<div>Setup Instructions</div>
+	</div>
+</header>
+
 <%= yield %>
+
+<footer>
+	<div class="footer-inner">
+		<div class="footer-item"><a href="#">About</a></div>
+		<div class="footer-item"><a href="">Privacy Policy</a></div>
+		<div class="footer-item"><a href="">Terms and Conditions</a></div>
+	</div>
+</footer>
 
 </body>
 </html>
