@@ -13,3 +13,185 @@
  *= require_tree .
  *= require_self
  */
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,700);
+@import url(http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css);
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  /* height: 100vh; */
+}
+
+body {
+  background-image: url("http://s10.postimg.org/jfgbfcla1/image.png");
+  background-size: contain;
+  color: white;
+  min-height: 100vh;
+  /*Force the header at the top, section at the middle and footer at the bottom*/
+  
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+a {
+  color: white;
+  text-decoration: underline;
+}
+/*HEADER//////////////////////////////////*/
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-container div {
+  padding: 0.375em;
+  font-size: 1.33em;
+  font-weight: 700;
+  line-height: 1.33;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  color: rgba(255, 255, 255, 0.667);
+}
+/*SECTION//////////////////////////////////*/
+
+.section-login {
+  flex: 1;
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-login .login-container {
+  text-align: center;
+}
+
+.section-login .login-container .app-logo {
+  text-align: center;
+}
+
+.section-login .login-container .app-logo img {
+  width: 8em;
+}
+
+.login-other {
+  margin-top: 1em;
+}
+.login-other a {
+  line-height: 2.3;
+}
+
+.section-login h1 {
+  font-size: 2em;
+  padding: 0.667em;
+  line-height: 1.3;
+}
+
+.login-container hr {
+  margin-top: 1.2em;
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0));
+}
+
+.section-login .login-form-container {
+  display: inline-block;
+}
+/* Icon to the left of the input */
+
+.login-form-container .field i {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 0.25em 0px 0px 0.25em;
+  color: rgba(0, 0, 0, 0.3);
+  display: block;
+  float: left;
+  height: 2.3em;
+  width: 2.3em;
+  line-height: 2.3em;
+  text-align: center;
+  font-size: 1.133em;
+}
+
+.login-form-container .field input[type="email"],
+input[type="password"] {
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 0px 0.25em 0.25em 0px;
+  margin-bottom: 0.5em;
+  padding: 0 1em;
+  width: 13em;
+  border: none;
+  color: #333;
+  height: 2.3em;
+  font-size: 1.133em;
+  outline: 0;
+  /* color: rgba(0, 0, 0, 0.3); */
+}
+/* Checkbox */
+
+.login-form-container .field input[type="checkbox"] {
+  /* line-height: 1.3; */
+  
+  width: 1.667em;
+  height: 1.667em;
+  color: red;
+  padding-top: 2em;
+}
+
+.login-form-container .field input[type="checkbox"] + label {
+  font-size: 1.133em;
+  line-height: 1.3;
+}
+/* Submit button */
+
+.login-form-container .actions input[type="submit"] {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  background: none;
+  border: none;
+  padding: 0.666em 1.333em;
+  text-transform: uppercase;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 1.133em;
+  margin-top: 1em;
+  /* background: rgba(255,255,255,0.4); */
+  
+  border-radius: 0.333em;
+  /* background-color: #87e1ed; */
+  
+  background-color: #307EAF;
+  color: white;
+  cursor: pointer;
+}
+
+.login-form-container .actions input[type="submit"]:hover {
+  box-shadow: inset 15px 15px 90px -20px #7996d1, inset -15px -5px 80px -10px #87e1ed;
+}
+
+footer {padding: 2em;}
+
+.footer-inner {
+  display: flex;
+  justify-content: center;
+  padding-top: 2em;
+}
+
+.footer-item a {
+  padding: 1.667em 0.667em;
+  line-height: 1.3;
+  /* color: rgba(255,255,255,0.66); */
+}
