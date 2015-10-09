@@ -43,9 +43,14 @@ rooms = Room.create(
 
 reservations = Reservation.create(
 	[
-		{ property_id: properties[0].id, arrival_date: Date.today, departure_date: Date.tomorrow, adults: 2, children: 0, room_type_id: room_types[0].id, rate: 75 },
-		{ property_id: properties[0].id, arrival_date: Date.today, departure_date: Date.tomorrow, adults: 2, children: 0, room_type_id: room_types[0].id, rate: 75, notes: "Will arrive after 10pm" },
-		{ property_id: properties[0].id, arrival_date: Date.today, departure_date: Date.tomorrow, adults: 2, children: 0, room_type_id: room_types[1].id, rate: 75, notes: "Will arrive after 10pm" }
+		{ property_id: properties[0].id, arrival_date: Date.today, departure_date: Date.tomorrow, adults: 2, children: 0, room_type_id: room_types[0].id, rate: 250 },
+		{ property_id: properties[0].id, arrival_date: Date.today, departure_date: Date.tomorrow, adults: 2, children: 0, room_type_id: room_types[0].id, rate: 170, notes: "Will arrive after 10pm" },
+		{ property_id: properties[0].id, arrival_date: Date.today, departure_date: Date.tomorrow, adults: 2, children: 0, room_type_id: room_types[1].id, rate: 225, notes: "Will arrive after midnight" },
+
+		{ property_id: properties[1].id, arrival_date: Date.today, departure_date: Date.tomorrow, adults: 2, children: 0, room_type_id: room_types[0].id, rate: 60 },
+		{ property_id: properties[1].id, arrival_date: Date.today, departure_date: Date.tomorrow, adults: 2, children: 0, room_type_id: room_types[0].id, rate: 72, notes: "Has a dog" },
+		{ property_id: properties[1].id, arrival_date: Date.today, departure_date: Date.tomorrow, adults: 2, children: 0, room_type_id: room_types[0].id, rate: 72, notes: "Needs first floor" },
+		{ property_id: properties[1].id, arrival_date: Date.today, departure_date: Date.tomorrow, adults: 2, children: 0, room_type_id: room_types[1].id, rate: 97, notes: "May cancel" }
 	]
 )
 
