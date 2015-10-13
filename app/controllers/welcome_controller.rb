@@ -3,6 +3,10 @@ class WelcomeController < ApplicationController
 	end
 
 	def update
+		# Do not permit users already belonging to a property to change their property
+		if current_user.property
+			redirect_to root_url, notice: 'You already belong to a property'
+		end
 		# Find the property using property_id from params
 		p = Property.where(id: params[:user][:property_id]).first
 		# Check if property exists
