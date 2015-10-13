@@ -7,8 +7,7 @@
 	User does not belong to any property. <br>
 	Join a property now: 
 	<%= form_for current_user, :url => welcome_path do |f| %>
-		<%= f.label :property_id %>
-		<%= f.number_field :property_id %>
+		<%= f.collection_select(:property_id, Property.all, :id, :name, {include_blank: true}) %>
 		<%= f.submit %>
 	<% end %>
 <% else %>
