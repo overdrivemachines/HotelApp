@@ -2,7 +2,7 @@
 
 <p>
   <strong>Property:</strong>
-  <%= @reservation.property %>
+  <%= @reservation.property.name %>
 </p>
 
 <p>
@@ -27,7 +27,7 @@
 
 <p>
   <strong>Room type:</strong>
-  <%= @reservation.room_type %>
+  <%= @reservation.room_type.code %>
 </p>
 
 <p>
@@ -45,5 +45,5 @@
   <%= @reservation.notes %>
 </p>
 
-<%= link_to 'Edit', edit_reservation_path(@reservation) %> |
-<%= link_to 'Back', reservations_path %>
+<%= link_to 'Edit', edit_property_reservation_path(@reservation.property, @reservation) %> |
+<%= link_to 'Back', property_reservations_path(@reservation.property) %>

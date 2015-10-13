@@ -2,7 +2,7 @@
 
 <h1>Listing Reservations</h1>
 
-<table>
+<table class="rwd-table">
   <thead>
     <tr>
       <th>Property</th>
@@ -21,18 +21,18 @@
   <tbody>
     <% @reservations.each do |reservation| %>
       <tr>
-        <td><%= reservation.property %></td>
+        <td><%= reservation.property.name %></td>
         <td><%= reservation.arrival_date %></td>
         <td><%= reservation.departure_date %></td>
         <td><%= reservation.adults %></td>
         <td><%= reservation.children %></td>
-        <td><%= reservation.room_type %></td>
+        <td><%= reservation.room_type.name %></td>
         <td><%= reservation.room %></td>
         <td><%= reservation.rate %></td>
         <td><%= reservation.notes %></td>
-        <td><%= link_to 'Show', reservation %></td>
-        <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
-        <td><%= link_to 'Destroy', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', property_reservation_path(reservation.property, reservation) %></td>
+        <td><%= link_to 'Edit', edit_property_reservation_path(reservation.property,reservation) %></td>
+        <td><%= link_to 'Destroy', property_reservation_path(reservation.property, reservation), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -40,4 +40,4 @@
 
 <br>
 
-<%= link_to 'New Reservation', new_reservation_path %>
+<%= link_to 'New Reservation', new_property_reservation_path(current_user.property) %>
