@@ -42,6 +42,7 @@
 #                           PUT    /properties/:id(.:format)                                properties#update
 #                           DELETE /properties/:id(.:format)                                properties#destroy
 #             welcome_index GET    /welcome/index(.:format)                                 welcome#index
+#                   welcome PATCH  /welcome(.:format)                                       welcome#update
 #          new_user_session GET    /users/sign_in(.:format)                                 devise/sessions#new
 #              user_session POST   /users/sign_in(.:format)                                 devise/sessions#create
 #      destroy_user_session DELETE /users/sign_out(.:format)                                devise/sessions#destroy
@@ -73,6 +74,8 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   get 'welcome/index'
+  # Allow users to be able to enroll in a property
+  patch 'welcome', to: 'welcome#update'
 
   devise_for :users  
 
