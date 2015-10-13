@@ -1,4 +1,17 @@
 <h1>Welcome#index</h1>
 <p>Find me in app/views/welcome/index.html.erb</p>
+<br>
+<br>
 
-<%= link_to "Reservations", property_reservations_path(current_user.property) %>  <br>
+<% if !current_user.property %>
+	User does not belong to any property. <br>
+	Join a property now: 
+	<%= form_for current_user, :url => welcome_path do |f| %>
+		<%= f.label :property_id %>
+		<%= f.number_field :property_id %>
+		<%= f.submit %>
+	<% end %>
+<% else %>
+	<%= link_to "Reservations", property_reservations_path(current_user.property) %>  <br>
+<% end %>
+
