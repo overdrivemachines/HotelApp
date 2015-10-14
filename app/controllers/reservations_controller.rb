@@ -36,7 +36,7 @@ class ReservationsController < ApplicationController
 
     # Should be retreived from Price table
     @reservation.rate = 65.00
-    
+
     @primary_guest = Guest.new
   end
 
@@ -50,7 +50,8 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
     respond_to do |format|
       if @reservation.save
-        @primary_guest = @reservation.guests.build(params[:guest])
+        puts "***Guest params: " + params[:guest].inspect
+        @primary_guest = @reservation.guests.build(guest_params)
         @primary_guest.save
 
         format.html { redirect_to property_reservation_path(@reservation.property, @reservation), notice: 'Reservation was successfully created.' }
@@ -96,5 +97,9 @@ class ReservationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def reservation_params
       params.require(:reservation).permit(:property_id, :arrival_date, :departure_date, :adults, :children, :room_type_id, :room_id, :rate, :notes)
+    end
+
+    def guest_params
+      params.require(:guest).permit(:first_name, :last_name)
     end
 end
