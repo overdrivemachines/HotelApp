@@ -27,7 +27,17 @@ class ReservationsController < ApplicationController
 
   # GET /reservations/new
   def new
+    # property_id of the new reservation will be set:
     @reservation = current_user.property.reservations.new
+    @reservation.arrival_date = Date.today
+    @reservation.departure_date = Date.today + 1
+    @reservation.adults = 1
+    @reservation.children = 0
+
+    # Should be retreived from Price table
+    @reservation.rate = 65.00
+    
+    @primary_guest = Guest.new
   end
 
   # GET /reservations/1/edit
@@ -38,9 +48,11 @@ class ReservationsController < ApplicationController
   # POST /reservations.json
   def create
     @reservation = Reservation.new(reservation_params)
-
     respond_to do |format|
       if @reservation.save
+        @primary_guest = @reservation.guests.build(params[:guest])
+        @primary_guest.save
+
         format.html { redirect_to property_reservation_path(@reservation.property, @reservation), notice: 'Reservation was successfully created.' }
         format.json { render :show, status: :created, location: @reservation }
       else
