@@ -6,12 +6,13 @@
   <thead>
     <tr>
       <th>Property</th>
+      <th>Room #</th>
+      <th>Guests</th>
       <th>Arrival date</th>
       <th>Departure date</th>
       <th>Adults</th>
       <th>Children</th>
-      <th>Room type</th>
-      <th>Room</th>
+      <th>Room type</th>      
       <th>Rate</th>
       <th>Notes</th>
       <th colspan="3"></th>
@@ -22,12 +23,19 @@
     <% @reservations.each do |reservation| %>
       <tr>
         <td><%= reservation.property.name %></td>
+        <td><%= reservation.room %></td>
+        <td>
+          <ul>
+            <% reservation.guests.each do |guest| %>
+              <li>guest.first_name guest.last_name</li>
+            <% end %>            
+          </ul>          
+        </td>
         <td><%= reservation.arrival_date %></td>
         <td><%= reservation.departure_date %></td>
         <td><%= reservation.adults %></td>
         <td><%= reservation.children %></td>
         <td><%= reservation.room_type.name %></td>
-        <td><%= reservation.room %></td>
         <td><%= reservation.rate %></td>
         <td><%= reservation.notes %></td>
         <td><%= link_to 'Show', property_reservation_path(reservation.property, reservation) %></td>
