@@ -47,6 +47,18 @@
     <%= f.label :notes %><br>
     <%= f.text_area :notes %>
   </div>
+
+  <%= fields_for :guest, @primary_guest do |guest_fields| %>
+    <div class="field">
+      <%= guest_fields.label :first_name %>
+      <%= guest_fields.text_field :first_name %>
+    </div>
+    <div class="field">
+      <%= guest_fields.label :last_name %>
+      <%= guest_fields.text_field :last_name %>
+    </div>
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>
