@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151006002522) do
+ActiveRecord::Schema.define(version: 20151014191111) do
 
   create_table "guests", force: :cascade do |t|
     t.string   "first_name"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20151006002522) do
     t.text     "notes"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.string   "access_code"
   end
 
   add_index "reservations", ["property_id"], name: "index_reservations_on_property_id"
