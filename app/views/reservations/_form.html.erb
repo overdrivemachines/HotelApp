@@ -33,7 +33,7 @@
   </div>
   <div class="field">
     <%= f.label :room_type_id %><br>
-    <%= f.text_field :room_type_id %>
+    <%= f.collection_select(:room_type_id, current_user.property.room_types, :id, :name) %>
   </div>
   <div class="field">
     <%= f.label :room_id %><br>
