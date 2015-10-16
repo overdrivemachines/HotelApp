@@ -68,7 +68,7 @@ class ReservationsController < ApplicationController
 	# PATCH/PUT /reservations/1.json
 	def update
 		respond_to do |format|
-			if @reservation.update(reservation_params)
+			if (@reservation.update(reservation_params)) && (@primary_guest.update(guest_params))
 				format.html { redirect_to property_reservation_path(@reservation.property, @reservation), notice: 'Reservation was successfully updated.' }
 				format.json { render :show, status: :ok, location: @reservation }
 			else
