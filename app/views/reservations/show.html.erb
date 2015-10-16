@@ -45,5 +45,16 @@
   <%= @reservation.notes %>
 </p>
 
+<p>
+  Guest(s)<br>
+  <ul>
+    <% @guests.each do |guest| %>
+      <li>
+        <%= guest.first_name + ' ' + guest.last_name %> <%= link_to 'edit', edit_guest_path(guest) %><br>
+      </li>      
+    <% end %>
+  </ul>
+</p>
+
 <%= link_to 'Edit', edit_property_reservation_path(@reservation.property, @reservation) %> |
 <%= link_to 'Back', property_reservations_path(@reservation.property) %>
