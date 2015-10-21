@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
-@import url(http://fonts.googleapis.com/css?family=Raleway:400,600);
+@import url(http://fonts.googleapis.com/css?family=Raleway:300,400,700);
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
 *,
 *:before,
@@ -40,20 +40,17 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
-
 a {
-  color: white;
-  text-decoration: underline;
-}
-
-header a,
-footer a {
+  padding: 0.667em 0.667em;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.667);
   text-decoration: none;
 }
-
-header a:hover,
-footer a:hover {
+a:hover {
   color: rgba(255, 255, 255, 1);
+}
+b {
+  font-weight: 700;
 }
 /*HEADER//////////////////////////////////*/
 
@@ -86,7 +83,6 @@ footer a:hover {
 
 .header-container {
   display: flex;
-  justify-content: space-between;
 }
 
 .header-container div {
@@ -97,6 +93,19 @@ footer a:hover {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   color: rgba(255, 255, 255, 0.667);
+  flex-basis: 0;
+  flex-grow: 1;
+}
+.header-container .center {
+  text-align: center;
+  font-weight: 400;
+}
+.header-container .right {
+  text-align: right;
+}
+
+.header-container .right {
+  font-weight: 400;
 }
 /*SECTION /////////////////////////////////*/
 
@@ -128,6 +137,8 @@ footer a:hover {
 
 .login-other a {
   line-height: 2.3;
+  color: white;
+  text-decoration: underline;
 }
 
 .section-login h1 {
@@ -169,12 +180,17 @@ input[type="password"] {
   margin-bottom: 0.5em;
   padding: 0 1em;
   width: 13em;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  /* border: none; */
   color: #333;
   height: 2.3em;
   font-size: 1.133em;
   outline: 0;
   /* color: rgba(0, 0, 0, 0.3); */
+}
+.login-form-container .field input[type="email"]:focus,
+input[type="password"]:focus {
+  border: 1px solid rgba(255,255,255,0.3);
 }
 /* Checkbox */
 
@@ -191,8 +207,7 @@ input[type="password"] {
   font-size: 1.133em;
   line-height: 1.3;
 }
-/* Submit button */
-
+/* Login button */
 .login-form-container .actions input[type="submit"] {
   margin-left: auto;
   margin-right: auto;
@@ -219,11 +234,6 @@ input[type="password"] {
   box-shadow: inset 15px 15px 90px -20px #7996d1, inset -15px -5px 80px -10px #87e1ed;
 }
 
-
-/*SECTION WELCOME//////////*/
-/* section-welcome defined in SECTION LOGIN */
-
-
 /*FOOTER /////////////////////////////////*/
 footer {
   padding: 0.667em;
@@ -235,8 +245,29 @@ footer {
   padding-top: 2em;
 }
 
-.footer-item a {
-  padding: 0.667em 0.667em;
-  line-height: 1.3;
-  color: rgba(255, 255, 255, 0.667);
+/*SECTION WELCOME//////////*/
+/* section-welcome defined in SECTION LOGIN */
+.items-container {
+  display: flex;
+  /* max-width: 70em; */
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.item {
+  margin: 0.667em;
+}
+.item a {
+  display: block;
+  font-size: 1.333em;
+}
+.item a:last-child {
+  padding-top: 0;
+}
+.icon-container {
+  /*width: 6em;
+  height: 6em;*/
+  /*background: white;
+  border-radius: 17.544%;*/
+  margin-left: auto;
+  margin-right: auto;
 }
