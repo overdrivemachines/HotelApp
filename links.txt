@@ -5,3 +5,32 @@ http://iroller.ru/blog/2013/10/14/nested-model-form-in-rails-4/
 http://www.createdbypete.com/articles/working-with-nested-forms-and-a-many-to-many-association-in-rails-4/
 http://tammersaleh.com/posts/almost-painless-nested-resources/
 http://www.codequizzes.com/learn-rails/nested-resources
+
+Useful
+======
+https://randomapi.com/
+
+Sticky Table Headers
+	http://tympanus.net/Tutorials/StickyTableHeaders/index.html
+Tooltip Styles
+	http://tympanus.net/Development/TooltipStylesInspiration/
+Tab Styles
+	http://tympanus.net/Development/TabStylesInspiration/
+Off-Canvas Menu Effects
+	http://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
+Notification
+	http://tympanus.net/Development/NotificationStyles/bar-slidetop.html
+Morphing Buttons
+	http://tympanus.net/Development/ButtonComponentMorph/index7.html#
+Fullscreen Overlay
+	http://tympanus.net/Development/FullscreenOverlayStyles/
+Custom Select Elements
+	http://tympanus.net/Development/SelectInspiration/index.html
+*Text Input - Chisato
+	http://tympanus.net/Development/TextInputEffects/index2.html
+*Button Styles - Ujarak
+	http://tympanus.net/Development/ButtonStylesInspiration/
+Dialog
+	http://tympanus.net/codrops/2014/12/08/inspiration-dialog-effects/
+Modal
+	http://tympanus.net/Development/ModalWindowEffects/
