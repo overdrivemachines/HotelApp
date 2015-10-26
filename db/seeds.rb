@@ -27,7 +27,10 @@ room_types = RoomType.create(
 		{ property_id: properties[0].id, code: "NQ1", name: "Non-Smoking Queen", description: "This is a Non-Smoking room that has a Queen sized bed." },
 		{ property_id: properties[0].id, code: "Q1", name: "Smoking Queen", description: "This is a Smoking room that has a Queen sized bed." },
 		{ property_id: properties[0].id, code: "NK1", name: "Non-Smoking King", description: "This is a Non-Smoking room that has a King sized bed." },
-		{ property_id: properties[0].id, code: "K1", name: "Smoking King", description: "This is a Smoking room that has a King sized bed." }
+		{ property_id: properties[0].id, code: "K1", name: "Smoking King", description: "This is a Smoking room that has a King sized bed." },
+
+		{ property_id: properties[1].id, code: "NQ1", name: "Non-Smoking Queen", description: "This is a Non-Smoking room that has a Queen sized bed." },
+		{ property_id: properties[1].id, code: "Q1", name: "Smoking Queen", description: "This is a Smoking room that has a Queen sized bed." }
 	]
 )
 
@@ -38,7 +41,10 @@ rooms = Room.create(
 		{ property_id: properties[0].id, room_number: 103, room_type_id: room_types[0].id, status: :clean },
 		{ property_id: properties[0].id, room_number: 104, room_type_id: room_types[1].id, status: :clean },
 		{ property_id: properties[0].id, room_number: 105, room_type_id: room_types[2].id, status: :clean },
-		{ property_id: properties[0].id, room_number: 106, room_type_id: room_types[3].id, status: :clean }
+		{ property_id: properties[0].id, room_number: 106, room_type_id: room_types[3].id, status: :clean },
+
+		{ property_id: properties[1].id, room_number: 10, room_type_id: properties[1].room_types.first.id, status: :clean },
+		{ property_id: properties[1].id, room_number: 11, room_type_id: properties[1].room_types.last.id, status: :clean }
 	]
 )
 
