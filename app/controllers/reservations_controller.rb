@@ -36,10 +36,21 @@ class ReservationsController < ApplicationController
 		@reservation.adults = 1
 		@reservation.children = 0
 
+		# Check if arrival date is in the params
+		if params[:arrival_date].present? && params[:departure_date].present?
+			@reservation.arrival_date = params[:arrival_date]
+			@reservation.departure_date = params[:departure_date]
+
+			# TODO: Check if rooms are left
+		end
+
 		# Should be retreived from Price table
 		@reservation.rate = 65.00
 
 		@primary_guest = Guest.new
+	end
+
+	def dates_lookup
 	end
 
 	# GET /reservations/1/edit
