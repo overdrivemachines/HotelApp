@@ -4,7 +4,8 @@ class RoomsController < ApplicationController
   # GET /rooms
   # GET /rooms.json
   def index
-    @rooms = Room.all
+    # Only show rooms for my property
+    @rooms = Room.all.where(property_id: current_user.property_id)
   end
 
   # GET /rooms/1
