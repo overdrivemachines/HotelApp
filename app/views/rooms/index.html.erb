@@ -1,15 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Rooms</h1>
+<h2>TODO: Show the Guests Checked-in</h2>
+<br><br>
 
 <table>
   <thead>
     <tr>
-      <th>Property</th>
       <th>Room number</th>
       <th>Room type</th>
       <th>Location</th>
       <th>Status</th>
+      <th>Guests</th>
+
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,11 +20,12 @@
   <tbody>
     <% @rooms.each do |room| %>
       <tr>
-        <td><%= room.property.name %></td>
         <td><%= room.room_number %></td>
-        <td><%= room.room_type.name %></td>
+        <td><%= room.room_type.code %></td>
         <td><%= room.location %></td>
         <td><%= room.status %></td>
+        <td>TODO: Guest Names</td>
+
         <td><%= link_to 'Show', room %></td>
         <td><%= link_to 'Edit', edit_room_path(room) %></td>
         <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
