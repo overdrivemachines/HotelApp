@@ -17,9 +17,9 @@
   <tbody>
     <% @rooms.each do |room| %>
       <tr>
-        <td><%= room.property %></td>
+        <td><%= room.property.name %></td>
         <td><%= room.room_number %></td>
-        <td><%= room.room_type %></td>
+        <td><%= room.room_type.name %></td>
         <td><%= room.location %></td>
         <td><%= room.status %></td>
         <td><%= link_to 'Show', room %></td>
