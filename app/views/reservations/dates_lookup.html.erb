@@ -1,0 +1,10 @@
+<div>
+	Enter the dates
+</div>
+<div>
+	<%= form_tag(new_property_reservation_path(current_user.property_id), method: "get") do %>
+		<%= date_field_tag(:arrival_date, Date.today) %>
+		<%= date_field_tag(:departure_date, Date.today + 1) %>
+		<%= submit_tag("ENTER", class: "btn") %>
+	<% end %>
+</div>
