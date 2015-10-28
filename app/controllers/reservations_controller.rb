@@ -43,8 +43,13 @@ class ReservationsController < ApplicationController
 
 		# Check if arrival date is in the params
 		if params[:arrival_date].present? && params[:departure_date].present?
-			@reservation.arrival_date = params[:arrival_date]
-			@reservation.departure_date = params[:departure_date]
+			# Set the new reservation's dates
+			@reservation.arrival_date = Date.parse(params[:arrival_date])
+			@reservation.departure_date = Date.parse(params[:departure_date])
+
+			# Save the dates in the cookie
+			cookies[:arrival_date] = @reservation.arrival_date
+			cookies[:departure_date] = @reservation.departure_date
 
 			# TODO: Check if rooms are left
 		end
@@ -56,6 +61,20 @@ class ReservationsController < ApplicationController
 	end
 
 	def dates_lookup
+		if cookies[:arrival_date] && cookies[:departure_date]
+			# Cookie exists
+			@arrival_date = Date.parse(cookies[:arrival_date])
+			@departure_date = Date.parse(cookies[:departure_date])
+		else
+			# Cookie does not exist
+			# Set default values
+			@arrival_date = Date.today
+			@departure_date = @arrival_date + 1
+
+			# Save default values in the cookie
+			cookies[:arrival_date] = @arrival_date
+			cookies[:departure_date] = @departure_date
+		end
 	end
 
 	# GET /reservations/1/edit
