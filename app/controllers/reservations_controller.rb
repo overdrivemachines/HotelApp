@@ -19,7 +19,7 @@ class ReservationsController < ApplicationController
 
 		@arrival_date = Date.today
 		if params[:arrival_date].present?
-			@arrival_date = params[:arrival_date]
+			@arrival_date = Date.parse(params[:arrival_date])
 		end
 		@reservations = Reservation.where(property_id: current_user.property_id, arrival_date: @arrival_date)
 		
