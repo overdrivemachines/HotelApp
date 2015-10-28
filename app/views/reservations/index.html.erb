@@ -1,6 +1,17 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Reservations</h1>
+<br><br>
+Reservations for:
+<%= form_tag property_reservations_path(current_user.property_id), method: "get" do %>
+  <%= radio_button_tag(:arrival_date, "#{Date.today}", @arrival_date == Date.today) %>
+  <%= label_tag(:arrival_date_today, "Today (#{Date.today})") %>
+  
+  <%= radio_button_tag(:arrival_date, "#{Date.today + 1}", @arrival_date == (Date.today + 1)) %>
+  <%= label_tag(:arrival_date_tomorrow, "Tomorrow (#{Date.today + 1})") %>
+
+  <%= submit_tag("ENTER", class: "btn") %>
+<% end %>
 
 <table class="rwd-table">
   <thead>
