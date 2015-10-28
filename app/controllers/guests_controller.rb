@@ -15,6 +15,9 @@ class GuestsController < ApplicationController
   # GET /guests/new
   def new
     @guest = Guest.new
+    if params[:res].present?
+      @guest.reservation_id = params[:res]
+    end
   end
 
   # GET /guests/1/edit
