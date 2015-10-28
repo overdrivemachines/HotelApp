@@ -15,6 +15,7 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  access_code    :string
+#  checked_in     :datetime
 #
 # Indexes
 #
@@ -27,5 +28,5 @@ class Reservation < ActiveRecord::Base
   belongs_to :property
   belongs_to :room_type
   belongs_to :room
-  has_many :guests
+  has_many :guests, dependent: :destroy
 end
