@@ -51,9 +51,11 @@
     <% @guests.each do |guest| %>
       <li>
         <%= guest.first_name + ' ' + guest.last_name %> <%= link_to 'edit', edit_guest_path(guest) %><br>
-      </li>      
+      </li>
     <% end %>
   </ul>
+  <br>
+  <%= link_to "Add Guest to this Reservation", new_guest_path(res: @reservation.id) %>
 </p>
 
 <%= link_to 'Edit', edit_property_reservation_path(@reservation.property, @reservation) %> |
