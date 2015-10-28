@@ -15,9 +15,14 @@ class ReservationsController < ApplicationController
 		# @reservations = Reservation.all
 		# List reservations for only 1 property
 
-		# TODO: List reservations only today
+		# TODO: filter reservations based on arrival_date in params
+
+		@arrival_date = Date.today
+		if params[:arrival_date].present?
+			@arrival_date = params[:arrival_date]
+		end
+		@reservations = Reservation.where(property_id: current_user.property_id, arrival_date: @arrival_date)
 		
-		@reservations = Reservation.where(property_id: params[:property_id])
 	end
 
 	# GET /reservations/1
@@ -61,17 +66,15 @@ class ReservationsController < ApplicationController
 	# POST /reservations.json
 	def create
 		@reservation = Reservation.new(reservation_params)
-		respond_to do |format|
-			if @reservation.save
-				@primary_guest = @reservation.guests.build(guest_params)
-				@primary_guest.save
+		if @reservation.save
+			@primary_guest = @reservation.guests.build(guest_params)
+			@primary_guest.save
 
-				format.html { redirect_to property_reservation_path(@reservation.property, @reservation), notice: 'Reservation was successfully created.' }
-				format.json { render :show, status: :created, location: @reservation }
-			else
-				format.html { render :new }
-				format.json { render json: @reservation.errors, status: :unprocessable_entity }
-			end
+			# redirect_to property_reservation_path(@reservation.property, @reservation), notice: 'Reservation was successfully created.' 
+			redirect_to edit_guest_path(@primary_guest)
+			# format.json { render :show, status: :created, location: @reservation }1
+		else
+			render :new
 		end
 	end
 
