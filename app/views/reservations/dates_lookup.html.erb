@@ -5,6 +5,12 @@
 	<%= form_tag(new_property_reservation_path(current_user.property_id), method: "get") do %>
 		<%= date_field_tag(:arrival_date, Date.today) %>
 		<%= date_field_tag(:departure_date, Date.today + 1) %>
+		<br><br>
 		<%= submit_tag("ENTER", class: "btn") %>
+		<br><br>
 	<% end %>
+</div>
+
+<div>
+	<%= link_to "Back", welcome_index_path %>
 </div>
