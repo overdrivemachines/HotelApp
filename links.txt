@@ -34,3 +34,22 @@ Dialog
 	http://tympanus.net/codrops/2014/12/08/inspiration-dialog-effects/
 Modal
 	http://tympanus.net/Development/ModalWindowEffects/
+
+
+Datepickers
+===========
+Baremetrics (Good)
+	https://github.com/Baremetrics/calendar
+jQuery UI DateRangePicker (OK)
+	http://tamble.github.io/jquery-ui-daterangepicker/
+rangeCalendar (OK)
+	http://codepen.io/tommiehansen/pen/NGdraM
+jQuery Date Range Picker Plugin (OK) - has hotel
+	https://github.com/longbill/jquery-date-range-picker
+jQuery Plugin Date and Time Picker (OK)
+	https://github.com/xdan/datetimepickers
+
+
+Date Paginator
+==============
+http://jondmiles.com/bootstrap-datepaginator/
