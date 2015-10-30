@@ -34,7 +34,11 @@ Reservations for:
     <% @reservations.each do |reservation| %>
       <tr>
         <td><%= reservation.property.name %></td>
-        <td><%= reservation.room %></td>
+        <td>
+          <% if reservation.room %>
+            <%= reservation.room.room_number %>
+          <% end %>
+        </td>
         <td>
           <ul>
             <% reservation.guests.each do |guest| %>
