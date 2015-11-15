@@ -5,6 +5,10 @@ class ReservationsController < ApplicationController
 	# GET /reservations.json
 	def index
 		# List reservations
+
+		# TODO: Redirect if user does not belong to a property
+
+		# Showing reservations based on arrival date
 		@arrival_date = Date.today
 		if params[:arrival_date].present?
 			@arrival_date = Date.parse(params[:arrival_date])
@@ -13,7 +17,7 @@ class ReservationsController < ApplicationController
 	end
 
 	# GET /reservations/1
-	# GET /reservations/1.json
+	# set_reservation_and_guests called
 	def show
 	end
 
@@ -65,17 +69,18 @@ class ReservationsController < ApplicationController
 	end
 
 	# GET /reservations/1/edit
+	# set_reservation_and_guests called
 	def edit
 	end
 
 	# POST /reservations
-	# POST /reservations.json
 	def create
 		@reservation = Reservation.new(reservation_params)
+		@reservation.property_id = current_user.property_id
 		if @reservation.save
 			@primary_guest = @reservation.guests.build(guest_params)
 			@primary_guest.save
-
+			# TODO: Clear cookies
 			# redirect_to property_reservation_path(@reservation.property, @reservation), notice: 'Reservation was successfully created.' 
 			redirect_to edit_guest_path(@primary_guest)
 			# format.json { render :show, status: :created, location: @reservation }1
@@ -86,6 +91,7 @@ class ReservationsController < ApplicationController
 
 	# PATCH/PUT /reservations/1
 	# PATCH/PUT /reservations/1.json
+	# set_reservation_and_guests called
 	def update
 		respond_to do |format|
 			if (@reservation.update(reservation_params)) && (@primary_guest.update(guest_params))
@@ -100,6 +106,7 @@ class ReservationsController < ApplicationController
 
 	# DELETE /reservations/1
 	# DELETE /reservations/1.json
+	# set_reservation_and_guests called
 	def destroy
 		@reservation.destroy
 		respond_to do |format|
@@ -111,6 +118,7 @@ class ReservationsController < ApplicationController
 	private
 		# Use callbacks to share common setup or constraints between actions.
 		def set_reservation_and_guests
+			# TODO: Check if user has access to view the reservation
 			# @property = Property.find(params[:property_id])
 			@reservation = Reservation.find(params[:id])
 			@guests = @reservation.guests
@@ -121,7 +129,7 @@ class ReservationsController < ApplicationController
 
 		# Never trust parameters from the scary internet, only allow the white list through.
 		def reservation_params
-			params.require(:reservation).permit(:property_id, :arrival_date, :departure_date, :adults, :children, :room_type_id, :room_id, :rate, :notes)
+			params.require(:reservation).permit(:arrival_date, :departure_date, :adults, :children, :room_type_id, :room_id, :rate, :notes)
 		end
 
 		def guest_params
