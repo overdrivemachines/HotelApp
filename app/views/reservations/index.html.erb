@@ -3,7 +3,7 @@
 <h1>Listing Reservations</h1>
 <br><br>
 Reservations for:
-<%= form_tag property_reservations_path(current_user.property_id), method: "get" do %>
+<%= form_tag reservations_path, method: "get" do %>
   <%= radio_button_tag(:arrival_date, Date.today, @arrival_date == Date.today) %>
   <%= label_tag("arrival_date_#{Date.today}", "Today (#{Date.today})") %>
   
@@ -53,9 +53,9 @@ Reservations for:
         <td><%= reservation.room_type.name %></td>
         <td><%= reservation.rate %></td>
         <td><%= reservation.notes %></td>
-        <td><%= link_to 'Show', property_reservation_path(reservation.property, reservation) %></td>
-        <td><%= link_to 'Edit', edit_property_reservation_path(reservation.property,reservation) %></td>
-        <td><%= link_to 'Destroy', property_reservation_path(reservation.property, reservation), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', reservation_path(reservation) %></td>
+        <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
+        <td><%= link_to 'Destroy', reservation_path(reservation), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -63,4 +63,4 @@ Reservations for:
 
 <br>
 
-<%= link_to 'New Reservation', property_reservations_new_dates_lookup_path(current_user.property) %>
+<%= link_to 'New Reservation', reservations_new_dates_lookup_path %>
