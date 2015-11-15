@@ -4,25 +4,12 @@ class ReservationsController < ApplicationController
 	# GET /reservations
 	# GET /reservations.json
 	def index
-		
-
-		# Prevent users from viewing reservations for other properties
-		if (params[:property_id].to_i != current_user.property_id)
-			redirect_to property_reservations_path(current_user.property)
-		end
-
-		# Do not list all reservations of all properties
-		# @reservations = Reservation.all
-		# List reservations for only 1 property
-
-		# TODO: filter reservations based on arrival_date in params
-
+		# List reservations
 		@arrival_date = Date.today
 		if params[:arrival_date].present?
 			@arrival_date = Date.parse(params[:arrival_date])
 		end
-		@reservations = Reservation.where(property_id: current_user.property_id, arrival_date: @arrival_date)
-		
+		@reservations = Reservation.where(property_id: current_user.property_id, arrival_date: @arrival_date)		
 	end
 
 	# GET /reservations/1
