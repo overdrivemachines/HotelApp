@@ -2,7 +2,7 @@
 	Enter the dates
 </div>
 <div>
-	<%= form_tag(new_property_reservation_path(current_user.property_id), method: "get") do %>
+	<%= form_tag(new_reservation_path, method: "get") do %>
 		<%= date_field_tag(:arrival_date, @arrival_date) %>
 		<%= date_field_tag(:departure_date, @departure_date) %>
 		<br><br>
