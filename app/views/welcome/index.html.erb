@@ -21,10 +21,10 @@
 					<a href="#">Walk In</a>
 				</div>
 				<div class="item">
-					<%= link_to property_reservations_path(current_user.property) do %>
+					<%= link_to reservations_path do %>
 						<div class="icon-container"><i class="fa fa-question-circle fa-5x"></i></div>
 					<% end %>
-					<%= link_to "Reservations", property_reservations_path(current_user.property) %>
+					<%= link_to "Reservations", reservations_path %>
 				</div>
 				<div class="item">
 					<a href="#"><div class="icon-container"><i class="fa fa-question-circle fa-5x"></i></div></a>
