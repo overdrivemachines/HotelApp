@@ -58,5 +58,5 @@
   <%= link_to "Add Guest to this Reservation", new_guest_path(res: @reservation.id) %>
 </p>
 
-<%= link_to 'Edit', edit_property_reservation_path(@reservation.property, @reservation) %> |
-<%= link_to 'Back', property_reservations_path(@reservation.property) %>
+<%= link_to 'Edit', edit_reservation_path(@reservation) %> |
+<%= link_to 'Back', reservations_path %>
