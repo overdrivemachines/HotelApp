@@ -81,7 +81,6 @@ class ReservationsController < ApplicationController
 			@primary_guest = @reservation.guests.build(guest_params)
 			@primary_guest.save
 			# TODO: Clear cookies
-			# redirect_to property_reservation_path(@reservation.property, @reservation), notice: 'Reservation was successfully created.' 
 			redirect_to edit_guest_path(@primary_guest)
 			# format.json { render :show, status: :created, location: @reservation }1
 		else

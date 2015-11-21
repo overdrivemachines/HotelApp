@@ -4,4 +4,4 @@
 
 <%= link_to 'Show', @guest %> |
 <%= link_to 'All Guests', guests_path %>
-<%= link_to 'Cancel Reservation', property_reservation_path(current_user.property, @guest.reservation), method: :delete, data: { confirm: 'Are you sure?' }  %>
+<%= link_to 'Cancel Reservation', reservation_path(@guest.reservation), method: :delete, data: { confirm: 'Are you sure?' }  %>
