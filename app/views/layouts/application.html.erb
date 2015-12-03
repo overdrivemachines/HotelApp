@@ -8,26 +8,25 @@
 </head>
 <body>
 
+<!-- current_user.email -->
+<!-- Edit Profile - edit_user_registration_path -->
+<!-- Logout - destroy_user_session_path -->
+
 <header>
 	<div class="header-container">
-		<div class="left">HotelApp</div>
+		<div class="left">
+			<%= link_to "HOTELAPP", root_path %>
+		</div>
 		<div class="right">
 			<% if user_signed_in? %>
-				Logged in as <strong><%= current_user.email %></strong>.
-				<%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-				<%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-				<br>
-				<% if current_user.property %>
-					My property is: <%= current_user.property.name %>
-				<% end %>
-				<br>
-				<%= link_to "Home", root_path %>
+				<i class="fa fa-question-circle"></i> 
 			<% else %>
-				<a href="#">Setup Instructions</a> | <a href="#"><i class="fa fa-question-circle"></i></a>
+				Signed In <i class="fa fa-question-circle"></i> 
 			<% end %>
 		</div>
 	</div>
 </header>
+<!-- 
 <div>
 	<% if notice %>
 		<p class="alert alert-success"><%= notice %></p>
@@ -39,16 +38,17 @@
 	<% end %>
 	<p><%= params.inspect %></p><br><br>
 </div>
+-->
 
 <%= yield %>
 
 <footer>
 	<div class="footer-inner">
 		<div class="footer-item"><a href="#">About</a></div>
-		<div class="footer-item"><a href="">Privacy Policy</a></div>
-		<div class="footer-item"><a href="">Terms and Conditions</a></div>
+		<div class="footer-item"><a href="#">Privacy Policy</a></div>
+		<div class="footer-item"><a href="#">Terms and Conditions</a></div>
+		<div class="footer-item"><a href="#">Contact</a></div>
 	</div>
 </footer>
-
 </body>
 </html>
