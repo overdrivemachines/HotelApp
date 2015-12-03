@@ -10,264 +10,534 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
+ *= require reset
+ *= require font-awesome
  *= require_self
+ *= require_tree .
  */
-@import url(http://fonts.googleapis.com/css?family=Raleway:300,400,700);
-@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.1/skins/square/blue.css);
+
 
 html {
   box-sizing: border-box;
-  /* height: 100vh; */
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
 }
 
 body {
-  background-image: url("http://s10.postimg.org/jfgbfcla1/image.png");
-  background-size: contain;
-  color: white;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: #FDFFFC;
+  font-size: 16px;
+  color: #011627;
   min-height: 100vh;
   /*Force the header at the top, section at the middle and footer at the bottom*/  
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */  
-  font-family: 'Raleway', sans-serif;
-  font-size: 16px;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
+
 a {
-  padding: 0.667em 0.667em;
-  line-height: 1.3;
-  color: rgba(255, 255, 255, 0.667);
+  color: #2EC4B6;
   text-decoration: none;
 }
-a:hover {
-  color: rgba(255, 255, 255, 1);
+
+a:hover, a:focus {
+  /*TODO: Colors needs to be changed*/
+  color: #27A498;
+  text-decoration: none;
 }
+
+a:focus {
+  outline: none;
+}
+
 b {
   font-weight: 700;
 }
-/*HEADER//////////////////////////////////*/
 
-.alert-success {
-  /* background: #307eaf; */  
-  background: #285f91;
-  padding: 0.667em;
-}
-
-.alert-danger {
-  background: #f18030;
-  padding: 0.667em;
-}
-
-.alert-inner {
-  max-width: 30em;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.alert-inner i {
-  padding-right: 0.334em;
-}
-
-.alert-inner div {
-  line-height: 1.3;
-}
-
-.header-container {
-  display: flex;
-}
-
-.header-container div {
-  padding: 0.375em;
-  font-size: 1.33em;
-  font-weight: 600;
+p {
+  margin: 1em 0;
   line-height: 1.33;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  color: rgba(255, 255, 255, 0.667);
-  flex-basis: 0;
-  flex-grow: 1;
 }
-.header-container .center {
-  text-align: center;
-  font-weight: 400;
-}
-.header-container .right {
-  text-align: right;
-}
-
-.header-container .right {
-  font-weight: 400;
-}
-/*SECTION /////////////////////////////////*/
-
 .section-container {
+  width: 100%;
   text-align: center;
 }
-
-/*SECTION LOGIN//////////*/
-.section-login, .section-welcome {
+/* Use this when there is only 1 section and you want it to be vertically aligned */
+#section-main {
   flex: 1;
   max-width: 100%;
   max-height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 0;
+}
+.spacer {
+  height: 2em;
+}
+.spacer-v {
+  margin-left: 1em;
+}
+/*HEADERS*****************************/
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 700;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+  margin-top: 34px;
+  margin-bottom: 17px;
+}
+h4, h5, h6 {
+  margin-top: 17px;
+  margin-bottom: 17px;
+}
+h1 {
+  font-size: 3.64em;
+}
+h2 {
+  font-size: 3.07em;
+}
+h3 {
+  font-size: 2.22em;
+}
+h4 {
+  font-size: 1.35em;
+}
+h5 {
+  font-size: 1.285em;
+}
+.title {
+  text-shadow: 2px 2px 2px rgba(255, 255, 255, 1);
+}
+.title span {
+  color: #E71D36;
+  font-size: 0.77em;
+}
+h6 {
+  font-size: 1em;
+  font-weight: 400;
 }
 
-.section-login .app-logo {
-  text-align: center;
-}
-
-.section-login .app-logo img {
-  width: 8em;
-}
-
-.login-other {
-  margin-top: 1em;
-}
-
-.login-other a {
-  line-height: 2.3;
-  color: white;
-  text-decoration: underline;
-}
-
-.section-login h1 {
-  font-size: 2em;
-  padding: 0.667em;
-  line-height: 1.3;
-}
-
-.section-login hr {
-  margin-top: 1.2em;
-  border: 0;
-  height: 1px;
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0));
-}
-
-.section-login .login-form-container {
-  display: inline-block;
-}
-/* Icon to the left of the input */
-
-.login-form-container .field i {
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 0.25em 0px 0px 0.25em;
-  color: rgba(0, 0, 0, 0.3);
-  display: block;
-  float: left;
-  height: 2.3em;
-  width: 2.3em;
-  line-height: 2.3em;
-  text-align: center;
-  font-size: 1.133em;
-}
-
-.login-form-container .field input[type="email"],
-input[type="password"] {
-  background-color: rgba(255, 255, 255, 0.7);
-  border-radius: 0px 0.25em 0.25em 0px;
-  margin-bottom: 0.5em;
+section {
+  /* border: 1px solid green; */
+  margin-top: 1.5em;
   padding: 0 1em;
-  width: 13em;
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  /* border: none; */
-  color: #333;
-  height: 2.3em;
-  font-size: 1.133em;
-  outline: 0;
-  /* color: rgba(0, 0, 0, 0.3); */
 }
-.login-form-container .field input[type="email"]:focus,
-input[type="password"]:focus {
-  border: 1px solid rgba(255,255,255,0.3);
-}
-/* Checkbox */
 
-.login-form-container .field input[type="checkbox"] {
-  /* line-height: 1.3; */
+/*BUTTONS*****************************/
+button, .btn {
+  border: 1px solid transparent;
+  color: #FDFFFC;
+  background-color: #011627;
+  border-color: #011627;
+  padding: 7px 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  touch-action: manipulation;
+  cursor: pointer;
+  border-radius: 4px;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 16px;
+}
+
+.btn.big, button.big {
+  font-size: 1.33em;
+  padding: 9px 18px;
+}
+
+button:hover, button:focus, .btn:hover, .btn:focus {
+  background-color: #022C4D;
+  border-color: #022C4D;
+  color: #FDFFFC;
+}
+
+.btn-blue {
+  background-color: #2489c5;
+  border-color: #2489c5;
+}
+
+.btn-blue:hover, .btn-blue:focus {
+  background-color: #1e72a4;
+  border-color: #1e72a4;
+}
+
+.btn-aqua {
+  background-color: #2EC4B6;
+  border-color: #2EC4B6;
+}
+
+.btn-aqua:hover, .btn-aqua:focus {
+  background-color: #27A498;
+  border-color: #27A498;
+}
+
+.btn-red {
+  background-color: #E71D36;
+  border-color: #E71D36;
+}
+
+.btn-red:hover, .btn-red:focus {
+  background-color: #C8152B;
+  border-color: #C8152B;
+}
+
+.btn-pink {
+  background-color: #e35583;
+  border-color: #e35583;
+}
+.btn-pink:hover, .btn-pink:focus {
+  background-color: #dd336a;
+  border-color: #dd336a;
+}
+
+.btn-orange {
+  background-color: #FF9F1C;
+  border-color: #FF9F1C;
+}
+
+.btn-orange:hover, .btn-orange:focus {
+  background-color: #F48D00;
+  border-color: #F48D00;
+}
+
+i {
+  margin: 0 0.45em;
+}
+/*TOOLTIP*****************************/
+/*FORMS*******************************/
+
+.field {
+  /* border: 1px solid green; */
   
-  width: 1.667em;
-  height: 1.667em;
-  color: red;
-  padding-top: 2em;
+  margin: 1.33em auto;
 }
 
-.login-form-container .field input[type="checkbox"] + label {
-  font-size: 1.133em;
-  line-height: 1.3;
-}
-/* Login button */
-.login-form-container .actions input[type="submit"] {
-  margin-left: auto;
-  margin-right: auto;
+label {
   display: block;
-  /* background: none; */
+  margin-bottom: 0.625em;
+  font-weight: 700;
+}
+
+input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=file]), textarea {
+  font-size: 16px;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  outline: none;
+  color: #434a54;
+  border-color: #aab2bd;
+  display: block;
+  padding: 6px 12px;
+  line-height: 1.42857143;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  width: 100%;
+}
+
+input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=file]):focus, input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=file]):hover, textarea:focus, textarea:hover {
+  border-color: #2EC4B6;
+}
+
+.cbox-wrapper, .rbutton-wrapper {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 1.33em;
+}
+
+label.cbox, label.rbutton {
+  display: inline-block;
+  /*Margin Required otherwise label is not aligned. Why?*/
   
-  border: none;
-  padding: 0.666em 1.333em;
-  text-transform: uppercase;
-  font-family: 'Raleway', sans-serif;
-  font-weight: 600;
-  color: rgba(0, 0, 0, 0.4);
-  font-size: 1.133em;
-  margin-top: 1em;
-  /* background: rgba(255,255,255,0.4); */  
-  border-radius: 0.333em;
-  /* background-color: #87e1ed; */  
-  background-color: #307EAF;
-  color: white;
+  margin: 0 0 0 0.5em;
+  cursor: pointer;
+  font: 16px/22px 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+/*CALENDAR****************************/
+
+.flatpickr-wrapper {
+  display: inline-block;
+  position: relative;
+  /* width: 800px; */
+}
+
+.flatpickr-wrapper input {
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+.flatpickr-calendar {
+  background-color: white;
+  /* color: #2489c5; */
+  
+  color: #011627;
+  border-radius: 4px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.5em;
+  opacity: 0;
+  padding: 1em;
+  border: 1px solid #ccc;
+  max-height: 0;
+  z-index: 0;
+  overflow: hidden;
+  -webkit-transition: opacity 550ms cubic-bezier(0.075, 0.820, 0.165, 1.000);
+  transition: opacity 550ms cubic-bezier(0.075, 0.820, 0.165, 1.000);
+  -webkit-transition-timing-function: cubic-bezier(0.075, 0.820, 0.165, 1.000);
+  transition-timing-function: cubic-bezier(0.075, 0.820, 0.165, 1.000);
+}
+
+.flatpickr-calendar:hover {
+  border-color: #2EC4B6;
+}
+
+.open .flatpickr-calendar, .inline .flatpickr-calendar {
+  max-height: 19em;
+  z-index: 100;
+  opacity: 1;
+}
+
+.inline .flatpickr-calendar {
+  position: static;
+}
+
+.flatpickr-months {
+  /* color: black; */
+  /*default 2px*/
+  /* padding: 0.5em; */
+  
+  text-align: center;
+  font-size: 1em;
+}
+
+.flatpickr-prev-month, .flatpickr-next-month {
+  text-decoration: none;
+  padding: 0 .667em;
   cursor: pointer;
 }
 
-.login-form-container .actions input[type="submit"]:hover {
-  box-shadow: inset 15px 15px 90px -20px #7996d1, inset -15px -5px 80px -10px #87e1ed;
+.flatpickr-prev-month {
+  float: left
+}
+
+.flatpickr-next-month {
+  float: right
+}
+
+.flatpickr-current-month {
+  padding: 0 .5em;
+  font-weight: normal;
+  font-size: 1.285em;
+}
+
+.flatpickr-current-month span {
+  font-weight: 700;
+}
+
+.flatpickr-prev-month:hover,
+.flatpickr-next-month:hover {
+  color: #1e72a4;
+}
+
+.flatpickr-calendar table {
+  border-collapse: collapse;
+  padding: 0;
+  width: 100%;
+}
+
+.flatpickr-calendar thead {
+  /* font-size: 16px */
+}
+
+.flatpickr-calendar th, .flatpickr-calendar td {
+  width: 14.28571%;
+}
+
+.flatpickr-calendar th {
+  text-align: center;
+  padding: 18px 5px 5px 5px;
+  font-weight: bold;
+  /* color: #011627; */
+}
+
+.flatpickr-calendar td span {
+  margin-left: 0.35em;
+}
+
+.flatpickr-calendar .slot {
+  cursor: pointer;
+}
+
+.flatpickr-day {
+  border: 1px solid transparent;
+  display: block;
+  height: 32px;
+  /* line-height: 32px; */
+  
+  padding: 0;
+  /* text-align: center; */
+  
+  width: 32px;
+  border-radius: 150px;
+  margin: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flatpickr-calendar td:hover .flatpickr-day {
+  background: #2489c5;
+  border-color: #2489c5;
+  color: white;
+}
+
+.today .flatpickr-day {
+  border-color: #2489c5;
+}
+
+td.today:hover .flatpickr-day {
+  border-color: #2489c5;
+  background-color: #2489c5;
+  color: white;
+}
+
+.selected .flatpickr-day, td.selected:hover .flatpickr-day {
+  background-color: #2489c5;
+  color: white;
+  border-color: #2489c5;
+}
+
+.flatpickr-calendar .disabled, .flatpickr-calendar .disabled .flatpickr-day, .flatpickr-calendar .disabled:hover .flatpickr-day {
+  background: transparent;
+  border-color: transparent;
+  color: #ccc;
+  /* cursor: default; */
+  
+  cursor: not-allowed;
+}
+
+/*SITE HEADER****************************/
+
+header {
+  background: #efefef;
+  background: linear-gradient(90deg, #43cea2 10%, #185a9d 90%);
+  color: #FDFFFC;
+}
+
+header a {
+  color: #FDFFFC;
+  opacity: 0.8;
+}
+
+header a:hover {
+  color: rgba(89, 33, 51, 0.618);
+}
+
+.header-container {
+  display: flex;
+}
+
+.header-container > div {
+  padding: 1em;
+  font-size: 1.285em;
+  /* font-size: 1.33em; */
+  font-weight: 700;
+  line-height: 1.1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  flex-basis: 0;
+  flex-grow: 1;
+}
+.header-container .left {
+  
+}
+.header-container .center {
+  
+}
+.header-container .right {
+  text-align: right;
+}
+
+#header-user-info {
+ font-weight: normal;
+}
+
+/*NAVIGATION**************************/
+
+
+/*NOT A PART OF UI KIT****************/
+
+#all-swatches-container {
+  display: flex;
+}
+
+.swatches-container {
+  margin-bottom: 0.625em;
+  padding-left: 1em;
+  padding-right: 1em;
+  width: 200px;
+}
+
+.swatches {
+  border-radius: 4px;
+  background-color: #FFF;
+  width: 100%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+  overflow: hidden;
+}
+
+.colors-display {
+  display: flex;
+}
+
+.colors-display > div {
+  width: 50%;
+  height: 4em;
+}
+
+.colors-info {
+  padding: 8px 12px;
+}
+
+.colors-info h6 {
+  margin: 0;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+
+.colors-info p {
+  font-size: 0.85em;
 }
 
 /*FOOTER /////////////////////////////////*/
 footer {
-  padding: 0.667em;
+  margin-top: 2em;
+  padding: 1.618em 0;
+  background: #2489c5;
 }
 
 .footer-inner {
   display: flex;
   justify-content: center;
-  padding-top: 2em;
+  /* padding-top: 2em; */
 }
-
-/*SECTION WELCOME//////////*/
-/* section-welcome defined in SECTION LOGIN */
-.items-container {
-  display: flex;
-  /* max-width: 70em; */
-  flex-wrap: wrap;
-  justify-content: center;
+footer a {
+  color: #FDFFFC;
+  padding: 1em;
+  font-weight: bold;
 }
-.item {
-  margin: 0.667em;
-}
-.item a {
-  display: block;
-  font-size: 1.333em;
-}
-.item a:last-child {
-  padding-top: 0;
-}
-.icon-container {
-  /*width: 6em;
-  height: 6em;*/
-  /*background: white;
-  border-radius: 17.544%;*/
-  margin-left: auto;
-  margin-right: auto;
+footer a:hover {
+  /* color: #f1a9c0; */
+  color: rgba(89,33,51,0.618);
+  /* color: green; */
 }
