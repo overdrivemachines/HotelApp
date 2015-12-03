@@ -27,7 +27,7 @@ body {
 }
 
 /* Icon to the left of the input */
-.lg i {
+#new_user i {
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 0.25em 0px 0px 0.25em;
   color: rgba(0, 0, 0, 0.3);
@@ -41,7 +41,8 @@ body {
   margin: 0;
 }
 
-#lg_user_email, #lg_user_password {
+#new_user #user_email,
+#new_user #user_password {
   background-color: rgba(255, 255, 255, 0.7);
   border-radius: 0px 0.25em 0.25em 0px;
   width: 13em;
@@ -50,17 +51,9 @@ body {
   height: 2.3em;
   font-size: 1.133em;
   outline: 0;
-  /* color: rgba(0, 0, 0, 0.3); */
-}
-.lg input[type="email"]:focus,
-.lg input[type="password"]:focus,
-.lg input[type="email"]:hover,
-.lg input[type="password"]:hover {
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  /* border: 1px solid blue; */
 }
 
-.lg input[type="submit"] {
+#new_user input[type="submit"] {
   margin-top: 0.618em;
 }
 
