@@ -1,10 +1,10 @@
-<section class="section-login">
+<section id="section-main" class="section-login">
   <div class="section-container">
     <div class="app-logo">
       <img src="http://s27.postimg.org/v08r9jveb/icon_white.png" alt="" />
     </div>
-    <h1>Sign in to HotelApp</h1>
-    <div class="login-form-container">
+    <h3>Sign in to HotelApp</h3>
+    <div class="lg-c">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="field">
           <i class="fa fa-user"></i>
@@ -15,23 +15,20 @@
           <%= f.password_field :password, autocomplete: "off", :placeholder => "Password" %>
         </div>
         <% if devise_mapping.rememberable? -%>
-            <div class="field">
-              <%= f.check_box :remember_me %>
-              <%= f.label :remember_me %>
-            </div>
-          <% end -%>
+          <div class="field">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me, class: "cbox" %>
+          </div>
+        <% end -%>
         <div class="actions">
-          <%= f.submit "Log in" %>
+          <%= f.submit "LOGIN", class: "btn btn-pink big" %>
         </div>
         <!-- end of form -->
       <% end %>
     </div>
     <hr />
-
-    
-    <div class="login-other">
+    <div class="login-other-links">
       <%= render "devise/shared/links" %>
     </div>
-    
   </div>
 </section>
