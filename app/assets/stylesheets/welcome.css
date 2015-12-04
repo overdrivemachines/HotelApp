@@ -1,83 +1,84 @@
-body {
-  /*background-image: url("http://s10.postimg.org/jfgbfcla1/image.png");
-  background-size: contain;*/
-  /* background:         linear-gradient(90deg, #7474BF 10%, #348AC7 90%); */ /* W3C */
-  background:         linear-gradient(90deg, #43cea2 10%, #185a9d 90%);  
-  /* justify-content: space-between; */
+/*SECTION WELCOME//////////*/
+/* section-welcome defined in SECTION LOGIN */
+.items-container {
+  display: flex;
+  /* max-width: 70em; */
+  flex-wrap: wrap;
+  justify-content: center;
 }
-
-
-
-/*SECTION LOGIN//////////*/
-.section-login {
-  color: #FDFFFC;
+.item {
+  margin: 1.618em;
+  /* font-size: 1.618em; */
 }
-.section-login .app-logo {
-  /* text-align: center; */
+.item-icon-container {
+  display: flex;
+  background: rgba(255,255,255,0.667);
+  border-radius: 17.544%;
+  width: 7em;
+  height: 7em;
+  justify-content: center;
+  align-content: center;
+  border: 2px solid #dd336a;
 }
-.section-login .app-logo img {
-  width: 8em;
+.item-icon-container i {
+  /* display: block; */
+  align-self: center;
 }
-.section-login h3 {
-  font-weight: normal;
-}
-
-.lg-c {
-  display: inline-block;
-}
-
-/* Icon to the left of the input */
-#new_user i {
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 0.25em 0px 0px 0.25em;
-  color: rgba(0, 0, 0, 0.3);
+.item a {
   display: block;
-  float: left;
-  height: 2.3em;
-  width: 2.3em;
-  line-height: 2.3em;
-  text-align: center;
-  font-size: 1.133em;
+  /* font-size: 1.333em; */
+}
+.item a h2 {
+  padding: 0;
+  padding-top: 1em;
+  font-size: 1em;
   margin: 0;
 }
 
-#new_user #user_email,
-#new_user #user_password {
-  background-color: rgba(255, 255, 255, 0.7);
-  border-radius: 0px 0.25em 0.25em 0px;
-  width: 13em;
-  border: 1px solid rgba(255,255,255,0.3); 
-  color: #333;
-  height: 2.3em;
-  font-size: 1.133em;
-  outline: 0;
+.checkin-icon {
+  background: #2ecc71;
+  border: 2px solid #27ae60;
+}
+.checkin-icon i, .checkin-icon + h2 {
+  color: #27ae60;
 }
 
-#new_user input[type="submit"] {
-  margin-top: 0.618em;
+.reservation-icon {
+  background: #3498db;
+  border: 2px solid #2980b9;
+}
+.reservation-icon i, .reservation-icon + h2 {
+  color: #2980b9;
 }
 
-.section-login hr {
-  margin-top: 1.2em;
-  border: 0;
-  height: 1px;
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0));
-  max-width: 20em;
+.calendar-icon {
+  background: #e74c3c;
+  border: 2px solid #c0392b;
+}
+.calendar-icon i, .calendar-icon + h2 {
+  color: #c0392b;
 }
 
-.login-other-links {
-  margin-top: 1em;
-  font-size: 16px;
-  line-height: 2;  
+.search-icon {
+  background: #34495e;
+  border: 2px solid #2c3e50;
 }
-.login-other-links a {
-  /* line-height: 2.3; */
-  color: white;
-  text-decoration: underline;
+.search-icon i, .search-icon + h2 {
+  color: #2c3e50;
 }
 
-footer {
-  background: none;
+.reports-icon {
+  background: #ecf0f1;
+  border: 2px solid #bdc3c7;
+}
+.reports-icon i, .reports-icon + h2 {
+  color: #bdc3c7;
 }
 
+.settings-icon {
+  background: #95a5a6;
+  border: 2px solid #7f8c8d;
+}
+.settings-icon i, .settings-icon + h2 {
+  color: #7f8c8d;
+}
