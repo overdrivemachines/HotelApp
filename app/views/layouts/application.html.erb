@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html class="<%= if (controller_name == "sessions") && (action_name() == "new") "sessions-new"  %>">
 <head>
 	<title>HotelApp</title>
 	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	<%= csrf_meta_tags %>
 </head>
+
 <body>
 
 <!-- current_user.email -->
@@ -19,9 +20,12 @@
 		</div>
 		<div class="right">
 			<% if user_signed_in? %>
-				<i class="fa fa-question-circle"></i> 
+				MENU <i class="fa fa-bars"></i> |  
+				<%= link_to destroy_user_session_path, :method => :delete do %>
+					<i class="fa fa-sign-out"></i>
+				<% end %>				
 			<% else %>
-				Signed In <i class="fa fa-question-circle"></i> 
+				<i class="fa fa-question-circle"></i> 
 			<% end %>
 		</div>
 	</div>
