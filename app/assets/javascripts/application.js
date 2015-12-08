@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require isotope.pkgd
+//= require numeral.min
 //= require_tree .
 
 $(document).ready(function(){
