@@ -1,5 +1,64 @@
-<h1>New Reservation</h1>
+<%# render 'form' %>
+<section id="section-main" class="section-reservation">
+	<div class="w800">
+		<div id="status-track">
+			<a class="complete" href="#">
+				<i class="fa fa-check-circle-o"></i>
+				<div class="lbl">Dates</div>
+				<div class="sub">
+					<%= @reservation.arrival_date.strftime('%b %d') %> - <%= @reservation.departure_date.strftime('%b %d') %>
+				</div>
+			</a>
+			<a class="current" href="#"><i class="fa fa-th-list"> </i>
+				<div class="lbl">Rooms</div>
+			</a>
+			<a class="future" href="#"><i class="fa fa-users"></i>
+				<div class="lbl">Payment</div>
+			</a>
+			<a class="future" href="#"><i class="fa fa-users"></i>
+				<div class="lbl">Guest Info</div>
+			</a>
+		</div>
 
-<%= render 'form' %>
+		<%= form_for(@reservation) do |f| %>
+			<h5 class="title">Filter By Room Type</h5>
+			<ul id="room-types-container">
+				<li class="rc is-selected" data-filter="*">
+					All
+				</li>
+				<% current_user.property.room_types.each do |rt| %>
+					<li class="rc" data-filter=".<%= rt.code %>">
+						<%= rt.code %>
+					</li>
+				<% end %>
+			</ul>
 
-<%= link_to 'Back', reservations_new_dates_lookup_path %>
+			<h5 class="title">Room Number</h5>
+			<ul id="rooms-container">
+				<% current_user.property.rooms.each do |room| %>
+					<li class="rc <%= room.room_type.code %>">
+						<%= f.radio_button :room_id, room.id, :"data-room-price" => "125", class: "hide" %>
+						<div class="rn"><%= room.room_number %></div>
+						<div class="rp">$125.00</div>
+					</li>
+				<% end %>
+			</ul>
+
+			<div class="spacer"></div>
+
+			<div class="actions">
+				<div>
+					<%= link_to "Cancel", welcome_index_path %>
+				</div>
+				<div>
+					<%= link_to reservations_new_dates_lookup_path, class: "btn btn-aqua" do %>
+						<i class="fa fa-angle-left fa"></i> Back
+					<% end %>
+					<%= button_tag class: "btn btn-aqua spacer-v" do %>
+						Continue <i class="fa fa-angle-right fa"></i>
+					<% end %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</section>
