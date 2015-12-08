@@ -1,6 +1,8 @@
-<p id="notice"><%= notice %></p>
+<section id="force-full-height">
 
-<h1>Listing Reservations</h1>
+  <h5 class="title">Reservations</h5>
+
+
 <br><br>
 Reservations for:
 <%= form_tag reservations_path, method: "get" do %>
@@ -64,3 +66,57 @@ Reservations for:
 <br>
 
 <%= link_to 'New Reservation', reservations_new_dates_lookup_path %>
+
+</section>
+
+<section id="force-full-height">
+  <h5 class="title">Reservations</h5>
+  <ul class="res-list">
+    <li class="res-item">
+      <div class="room-number">
+        315
+      </div>
+      <div class="res-details-c">
+        <div class="names">
+          Dipen Chauhan, Sandra Smith, Christopher Smith
+        </div>
+        <div class="res-details">
+          <div class="res-arrival">Arriving: 5-1-15</div>
+          <div class="res-leaving">Leaving: 9-12-15</div>
+          <div class="res-nights">2 Nights</div>
+        </div>
+        <div class="res-badges">
+          <span class="badge btn-red">Unpaid</span>
+          <span class="badge btn-orange">Note</span>
+        </div>
+      </div>
+      <div class="res-actions">
+        <div></div>
+        <div><a href="#">View</a></div>
+      </div>
+    </li>
+    <li class="res-item">
+      <div class="room-number">
+       A
+      </div>
+      <div class="res-details-c">
+        <div class="names">
+          Dipen Chauhan
+        </div>
+        <div class="res-details">
+          <div class="res-arrival">Arriving: 5-1-15</div>
+          <div class="res-leaving">Leaving: 9-12-15</div>
+          <div class="res-nights">2 Nights</div>
+        </div>
+        <div class="res-badges">
+          <span class="badge btn-red">Unpaid</span>
+          <span class="badge btn-orange">Note</span>
+        </div>
+      </div>
+      <div class="res-actions">
+        <div><a href="#">Check In</a></div>
+        <div><a href="#">View</a></div>
+      </div>
+    </li>
+  </ul>  
+</section>
