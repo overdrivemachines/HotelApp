@@ -66,3 +66,14 @@ reservations = Reservation.create(
 	]
 )
 
+guests = Guest.create(
+	[
+		{ reservation_id: reservations[0].id, first_name: "Doris", last_name: "Chen", phone1: "5309865678"},
+		{ reservation_id: reservations[0].id, first_name: "Jerry", last_name: "Morales", phone1: "9165687965"},
+
+		{ reservation_id: reservations[1].id, first_name: "Russel", last_name: "Gilbert", phone1: "4156879455"},
+
+		{ reservation_id: reservations[2].id, first_name: "Joyce", last_name: "Estrada", phone1: "9098746587"}
+
+	]
+)
