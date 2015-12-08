@@ -3,6 +3,7 @@ http://codepen.io/overdrivemachines/pen/zrYvBo
 */
 .res-list {
   /* max-width: 800px; */
+  margin: 2em;
 }
 .res-item {
   padding: 1em 0;
@@ -20,12 +21,14 @@ http://codepen.io/overdrivemachines/pen/zrYvBo
 .room-number {
   font-size: 2.85em;
   font-weight: 700;
-  width: 140px;
+  width: 160px;
   text-align: right;
+  border-right: 1px solid #ccc;
+  padding-right: 16px;
 }
 .res-details-c {
   padding: 0 1em;
-  width: 500px;
+  max-width: 520px;
 }
 .names {
   font-weight: 700;
@@ -41,7 +44,11 @@ http://codepen.io/overdrivemachines/pen/zrYvBo
   font-size: 0.85em;
   display: inline-block;
   padding-right: 1em;
-  width: 10em;
+  width: 190px;
+  line-height: 1.3;
+}
+.res-details > div.res-nights{
+  width: 90px;
 }
 .res-badges {
   
