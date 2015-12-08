@@ -1,16 +1,39 @@
-<div>
-	Enter the dates
-</div>
-<div>
-	<%= form_tag(new_reservation_path, method: "get") do %>
-		<%= date_field_tag(:arrival_date, @arrival_date) %>
-		<%= date_field_tag(:departure_date, @departure_date) %>
-		<br><br>
-		<%= submit_tag("ENTER", class: "btn") %>
-		<br><br>
-	<% end %>
-</div>
+<section id="section-main" class="section-reservation">
+  <div class="w800">
+    <div id="status-track">
+      <a class="current" href="#">
+        <i class="fa fa-calendar"></i>
+        <div class="lbl">Dates</div>
+      </a>
+      <a class="future" href="#"><i class="fa fa-th-list"> </i>
+        <div class="lbl">Rooms</div>
+      </a>
+      <a class="future" href="#"><i class="fa fa-users"></i>
+        <div class="lbl">Payment</div>
+      </a>
+      <a class="future" href="#"><i class="fa fa-users"></i>
+        <div class="lbl">Guest Info</div>
+      </a>
+    </div>
 
-<div>
-	<%= link_to "Back", welcome_index_path %>
-</div>
+    <%= form_tag(new_reservation_path, method: "get") do %>
+      <label for="txtcheckindate">Check In</label>
+      <%= date_field_tag(:arrival_date, @arrival_date) %>
+      <div class="spacer"></div>
+      <label for="txtcheckoutdate">Check Out</label>
+      <%= date_field_tag(:departure_date, @departure_date) %>
+
+      <div class="spacer"></div>
+      <div class="actions">
+        <div>
+        	<%= link_to "Cancel", welcome_index_path %>
+        </div>
+        <div>
+			<%= button_tag class: "btn btn-aqua spacer-v" do %>
+				Continue <i class="fa fa-angle-right fa"></i>
+			<% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>
