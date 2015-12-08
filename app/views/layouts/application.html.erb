@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="<%= if (controller_name == "sessions") && (action_name() == "new") "sessions-new"  %>">
+<html class="<%= "sessions-new" if (controller_name == "sessions") && (action_name() == "new")   %>">
 <head>
 	<title>HotelApp</title>
 	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
