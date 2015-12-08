@@ -1,122 +1,52 @@
 <section id="force-full-height">
-
   <h5 class="title">Reservations</h5>
-
-
-<br><br>
-Reservations for:
-<%= form_tag reservations_path, method: "get" do %>
-  <%= radio_button_tag(:arrival_date, Date.today, @arrival_date == Date.today) %>
-  <%= label_tag("arrival_date_#{Date.today}", "Today (#{Date.today})") %>
-  
-  <%= radio_button_tag(:arrival_date, (Date.today + 1), @arrival_date == (Date.today + 1)) %>
-  <%= label_tag("arrival_date_#{Date.today + 1}", "Tomorrow (#{Date.today + 1})") %>
-
-  <%= submit_tag("ENTER", class: "btn") %>
-<% end %>
-
-<table class="rwd-table">
-  <thead>
-    <tr>
-      <th>Property</th>
-      <th>Room #</th>
-      <th>Guests</th>
-      <th>Arrival date</th>
-      <th>Departure date</th>
-      <th>Adults</th>
-      <th>Children</th>
-      <th>Room type</th>      
-      <th>Rate</th>
-      <th>Notes</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @reservations.each do |reservation| %>
-      <tr>
-        <td><%= reservation.property.name %></td>
-        <td>
-          <% if reservation.room %>
-            <%= reservation.room.room_number %>
-          <% end %>
-        </td>
-        <td>
-          <ul>
-            <% reservation.guests.each do |guest| %>
-              <li><%= guest.first_name %> <%= guest.last_name %></li>
-            <% end %>            
-          </ul>          
-        </td>
-        <td><%= reservation.arrival_date %></td>
-        <td><%= reservation.departure_date %></td>
-        <td><%= reservation.adults %></td>
-        <td><%= reservation.children %></td>
-        <td><%= reservation.room_type.name %></td>
-        <td><%= reservation.rate %></td>
-        <td><%= reservation.notes %></td>
-        <td><%= link_to 'Show', reservation_path(reservation) %></td>
-        <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
-        <td><%= link_to 'Destroy', reservation_path(reservation), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Reservation', reservations_new_dates_lookup_path %>
-
-</section>
-
-<section id="force-full-height">
-  <h5 class="title">Reservations</h5>
+  <%= link_to '+ Create New Reservation', reservations_new_dates_lookup_path, class: "btn" %>
+  <div class="spacer"></div>
+  <%= form_tag reservations_path, method: "get" do %>
+    <div class="rbutton-wrapper">
+      <%= radio_button_tag(:arrival_date, Date.today, @arrival_date == Date.today) %>
+      <%= label_tag "arrival_date_#{Date.today}", "Today (#{Date.today})", class: "rbutton" %>
+    </div>
+    <div class="rbutton-wrapper">
+      <%= radio_button_tag(:arrival_date, (Date.today + 1), @arrival_date == (Date.today + 1)) %>
+      <%= label_tag "arrival_date_#{Date.today + 1}", "Tomorrow (#{Date.today + 1})", class: "rbutton" %>
+    </div>
+    <%= submit_tag("ENTER", class: "btn") %>
+  <% end %>
   <ul class="res-list">
-    <li class="res-item">
-      <div class="room-number">
-        315
-      </div>
-      <div class="res-details-c">
-        <div class="names">
-          Dipen Chauhan, Sandra Smith, Christopher Smith
+    <% @reservations.each do |reservation| %>
+      <li class="res-item">
+        <div class="room-number">
+          <% if reservation.room == nil %>
+            --
+          <% else %>
+            reservation.room.room_number
+          <% end %>
         </div>
-        <div class="res-details">
-          <div class="res-arrival">Arriving: 5-1-15</div>
-          <div class="res-leaving">Leaving: 9-12-15</div>
-          <div class="res-nights">2 Nights</div>
+        <div class="res-details-c">
+          <div class="names">
+            <% if reservation.guests.size == 0 %>
+              [None]
+            <% else %>
+              <%= reservation.guests.collect {|x| x.first_name + " " + x.last_name}.join(", ") %>
+            <% end %>
+          </div>
+          <div class="res-details">
+            <div class="res-arrival">Arriving: <%= reservation.arrival_date.strftime('%a %d %b %Y') %></div>
+            <div class="res-leaving">Leaving: <%= reservation.departure_date.strftime('%a %d %b %Y') %></div>
+            <div class="res-nights"><%= (reservation.departure_date - reservation.arrival_date).to_i %> Nights</div>
+          </div>
+          <div class="res-badges">
+            <span class="badge btn-red">Unpaid</span>
+            <span class="badge btn-orange">Note</span>
+          </div>
         </div>
-        <div class="res-badges">
-          <span class="badge btn-red">Unpaid</span>
-          <span class="badge btn-orange">Note</span>
+        <div class="res-actions">
+          <div><a href="#">Check In</a></div>
+          <div><a href="#">View</a></div>
         </div>
-      </div>
-      <div class="res-actions">
-        <div></div>
-        <div><a href="#">View</a></div>
-      </div>
-    </li>
-    <li class="res-item">
-      <div class="room-number">
-       A
-      </div>
-      <div class="res-details-c">
-        <div class="names">
-          Dipen Chauhan
-        </div>
-        <div class="res-details">
-          <div class="res-arrival">Arriving: 5-1-15</div>
-          <div class="res-leaving">Leaving: 9-12-15</div>
-          <div class="res-nights">2 Nights</div>
-        </div>
-        <div class="res-badges">
-          <span class="badge btn-red">Unpaid</span>
-          <span class="badge btn-orange">Note</span>
-        </div>
-      </div>
-      <div class="res-actions">
-        <div><a href="#">Check In</a></div>
-        <div><a href="#">View</a></div>
-      </div>
-    </li>
-  </ul>  
+      </li>
+    <% end %>
+  </ul>
+  <%= link_to '+ Create New Reservation', reservations_new_dates_lookup_path, class: "btn" %>
 </section>
