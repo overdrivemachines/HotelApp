@@ -61,7 +61,6 @@ ActiveRecord::Schema.define(version: 20151208044435) do
     t.text     "notes"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.string   "access_code"
     t.datetime "checked_in"
   end
 
