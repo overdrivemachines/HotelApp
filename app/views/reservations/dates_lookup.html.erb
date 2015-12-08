@@ -17,10 +17,10 @@
     </div>
 
     <%= form_tag(new_reservation_path, method: "get") do %>
-      <label for="txtcheckindate">Check In</label>
+      <%= label_tag "arrival_date", Check In %>
       <%= date_field_tag(:arrival_date, @arrival_date) %>
       <div class="spacer"></div>
-      <label for="txtcheckoutdate">Check Out</label>
+      <%= label_tag "departure_date", Check Out %>
       <%= date_field_tag(:departure_date, @departure_date) %>
 
       <div class="spacer"></div>
