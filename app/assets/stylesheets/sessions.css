@@ -57,6 +57,10 @@
   margin-top: 0.618em;
 }
 
+.section-login .actions {
+  display: block;
+}
+
 .section-login hr {
   margin-top: 1.2em;
   border: 0;
