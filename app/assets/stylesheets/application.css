@@ -18,7 +18,6 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
 @import url(https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.1/skins/square/blue.css);
 
-
 html {
   box-sizing: border-box;
 }
@@ -49,6 +48,7 @@ a:hover, a:focus {
   /*TODO: Colors needs to be changed*/
   color: #27A498;
   text-decoration: none;
+  /*text-shadow: 0 0 1.6em rgba(255,255,255, 0.9);*/
 }
 
 a:focus {
@@ -77,8 +77,24 @@ p {
   align-items: center;
   margin-top: 0;
 }
+#force-full-height {
+  flex: 1;
+  max-width: 100%;
+  max-height: 100%;
+}
+section .w800 {
+  align-self: flex-start;
+  max-width: 800px;
+  width: 100%;
+}
+.flex {
+  display: flex;
+}
 .spacer {
   height: 2em;
+}
+.hide {
+  display: none;
 }
 .spacer-v {
   margin-left: 1em;
@@ -130,6 +146,17 @@ section {
   /* border: 1px solid green; */
   margin-top: 1.5em;
   padding: 0 1em;
+}
+
+/*BADGES*****************************/
+.badge {
+  display: inline-block;
+  font-size: 0.8em;
+  border: 1px solid #011627;
+  padding: 0.2em 0.5em;
+  color: white;
+  background: #011627;
+  cursor: default;
 }
 
 /*BUTTONS*****************************/
@@ -211,6 +238,7 @@ button:hover, button:focus, .btn:hover, .btn:focus {
 i {
   margin: 0 0.45em;
 }
+
 /*TOOLTIP*****************************/
 /*FORMS*******************************/
 
@@ -260,6 +288,12 @@ label.cbox, label.rbutton {
   margin: 0 0 0 0.5em;
   cursor: pointer;
   font: 16px/22px 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+form .actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 /*CALENDAR****************************/
 
@@ -436,7 +470,7 @@ header {
 
 header a {
   color: #FDFFFC;
-  opacity: 0.8;
+  /* opacity: 0.8; */
 }
 
 header a:hover {
@@ -474,6 +508,94 @@ header a:hover {
 
 /*NAVIGATION**************************/
 
+/*STATUS////////////////////////////*/
+#status-track {
+  margin: 1.816em 0.1em 1.816em 0.1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-transform: uppercase;
+  font-size: 1em;
+}
+
+#status-track > a {
+  text-align: center;
+  /* line-height: 3; */
+  flex: 2;
+  -webkit-flex: 2;
+  -ms-flex: 0px 2;
+  position: relative;
+  display: block;
+}
+
+#status-track .complete {
+  /* color: #fe8125; */
+  /* color: #00c6ff; */  
+  color: #307EAF;
+  /* color: #2ec4b6; */
+  color: #e71d36;
+  /* color: #ff9f1c; */
+  /* color: #0072ff; */
+  color: #011627;
+}
+#status-track .current {
+  color: #011627;
+  color: #e71d36;
+}
+#status-track .future {
+  color: rgba(1,22,39,0.5);
+}
+
+#status-track > * * {
+  /* display: block; */
+}
+
+#status-track .lbl, #status-track .sub {
+  font-weight: 700;
+  text-transform: uppercase;
+  /* letter-spacing: 1px; */
+  padding-top: 0.25em;
+  /* margin: 0.4em 0; */
+  display: block;
+}
+#status-track .sub {
+  font-size: 0.816em;
+}
+
+#status-track i.fa {
+  font-size: 1.667em;
+}
+
+#status-track > *:first-child {
+  /*text-align: left;
+  flex: 1;*/
+  /*-webkit-flex: 1;
+  -ms-flex: 0px 1;*/
+  /* background: green; */
+}
+#status-track > *:not(:first-child)::before {
+  display: block;
+  content: "";
+  position: absolute;
+  left: -50%;
+  right: 50%;
+  top: 0.5em;
+  border-top: 0.2em solid;
+  margin: 0 2.1em;
+}
+#status-track > *:nth-child(2)::before {
+  margin-left: 2.5em;
+}
+#status-track > *:last-child {
+  /*text-align: right;
+  flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 0px 1;*/
+}
+#status-track > *:last-child::before {
+  /*right: 0.5em;
+  left: -100%;*/
+}
 
 /*NOT A PART OF UI KIT****************/
 
