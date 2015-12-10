@@ -20,7 +20,7 @@
           <% if reservation.room == nil %>
             --
           <% else %>
-            reservation.room.room_number
+          <%= reservation.room.room_number %>            
           <% end %>
         </div>
         <div class="res-details-c">
@@ -38,12 +38,18 @@
           </div>
           <div class="res-badges">
             <span class="badge btn-red">Unpaid</span>
-            <span class="badge btn-orange">Note</span>
+            <% if (reservation.notes != nil) %>
+              <span class="badge btn-orange">Note</span>
+            <% end %>
           </div>
         </div>
         <div class="res-actions">
-          <div><a href="#">Check In</a></div>
-          <div><a href="#">View</a></div>
+          <div>
+            <%= link_to "View", reservation_path(reservation) %>
+          </div>
+          <div>
+            <%= link_to "Edit", edit_reservation_path(reservation) %>
+          </div>
         </div>
       </li>
     <% end %>
