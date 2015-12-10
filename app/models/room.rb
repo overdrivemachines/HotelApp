@@ -22,5 +22,7 @@ class Room < ActiveRecord::Base
 	belongs_to :room_type
 	has_many :reservations
 
-	enum status: [ready: 0, occupied: 1, dirty: 2, out_of_order: 3]
+	# https://richonrails.com/articles/active-record-enums-in-ruby-on-rails-4-1
+	# enum status: [:t1, :t2]
+	enum status: {ready: 0, occupied: 1, dirty: 2, out_of_order: 3}
 end
