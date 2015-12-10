@@ -50,6 +50,6 @@ $(document).ready(function() {
     tax = numeral(tax).format('$0,0.00');
     $("#tax").val(tax);
     total = numeral(total).format('$0,0.00');
-    $("#total-room-price").val(total);
+    $("#reservation_rate").val(total);
   });
 });
