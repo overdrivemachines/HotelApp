@@ -22,5 +22,5 @@ class Room < ActiveRecord::Base
 	belongs_to :room_type
 	has_many :reservations
 
-	enum status: [:clean, :dirty, :out_of_order]
+	enum status: [ready: 0, occupied: 1, dirty: 2, out_of_order: 3]
 end
