@@ -1,10 +1,12 @@
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
 
-  # GET /transactions
-  # GET /transactions.json
+  # GET /reservations/:reservation_id/transactions
+  # GET /reservations/:reservation_id/transactions.json
   def index
-    @transactions = Transaction.all
+    @reservation = Reservation.find(params[:reservation_id])
+    @transactions = @reservation.transactions
+    @transaction = Transaction.new
   end
 
   # GET /transactions/1
@@ -24,16 +26,21 @@ class TransactionsController < ApplicationController
   # POST /transactions
   # POST /transactions.json
   def create
-    @transaction = Transaction.new(transaction_params)
+    # TODO: connect with stripe    
+    # @transaction = Transaction.new(transaction_params)
+    cc_number = params[:cc_number]
+    cc_amount = params[:cc_amount].to_f
 
-    respond_to do |format|
-      if @transaction.save
-        format.html { redirect_to @transaction, notice: 'Transaction was successfully created.' }
-        format.json { render :show, status: :created, location: @transaction }
-      else
-        format.html { render :new }
-        format.json { render json: @transaction.errors, status: :unprocessable_entity }
-      end
+    @transaction = Transaction.new
+    @transaction.reservation_id = params[:reservation_id]
+
+    @transaction.description = "Payment Using Card " + cc_number.reverse[0..3].reverse
+    @transaction.amount = cc_amount
+
+    if @transaction.save
+      redirect_to @transaction
+    else
+      render :index
     end
   end
 
