@@ -80,7 +80,7 @@
 
 Rails.application.routes.draw do
 
-  resources :transactions
+  
   resources :room_type_rates
   resources :guests  
   resources :rooms
@@ -90,7 +90,9 @@ Rails.application.routes.draw do
   get 'reservations/new/dates_lookup', to: "reservations#dates_lookup"
   # No need to nest reservations in properties because user can belong
   # only to 1 property.
-  resources :reservations
+  resources :reservations do
+     resources :transactions, shallow: true
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
