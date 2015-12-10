@@ -92,7 +92,7 @@ class ReservationsController < ApplicationController
 
 	# POST /reservations
 	def create
-		@reservation = Reservation.new(reservation_params)
+		@reservation = Reservation.new(rp)
 		@reservation.property_id = current_user.property_id
 		if @reservation.save
 			# @primary_guest = @reservation.guests.build(guest_params)
@@ -155,7 +155,16 @@ class ReservationsController < ApplicationController
 
 		# Never trust parameters from the scary internet, only allow the white list through.
 		def reservation_params
-			params.require(:reservation).permit(:arrival_date, :departure_date, :adults, :children, :room_type_id, :room_id, :rate, :notes)
+			rp = params.require(:reservation).permit(:arrival_date, :departure_date, :adults, :children, :room_type_id, :room_id, :rate, :notes)
+
+			# Removing $ and ,
+			if (rp["rate"] != nil)
+				rp["rate"] = rp["rate"].gsub(/[$,]/, '').to_f
+			else
+				rp["rate"] = 9999
+			end
+
+			return rp
 		end
 
 		def guest_params
