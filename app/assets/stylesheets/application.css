@@ -17,7 +17,7 @@
  */
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
 @import url(https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.1/skins/square/blue.css);
-
+@import url(https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.4.0/animate.min.css);
 html {
   box-sizing: border-box;
 }
@@ -242,10 +242,29 @@ i {
 /*TOOLTIP*****************************/
 /*FORMS*******************************/
 
+fieldset {
+  /* margin-bottom: 1em; */
+}
+form .split {
+  display: flex;
+}
+form .split > div {
+  padding: 0 1em;
+}
+form .split > .equal {
+  flex: 1 0 0;
+}
+form .split > div:first-child {
+  padding-left: 0;
+}
+form .split > div:last-child {
+  padding-right: 0;
+}
+
 .field {
   /* border: 1px solid green; */
   
-  margin: 1.33em auto;
+  margin: 0 auto 1.33em;
 }
 
 label {
