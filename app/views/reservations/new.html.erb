@@ -70,12 +70,16 @@
 				<div class="dp-row">
 					<div class="col1"><b>TOTAL</b></div>
 					<div class="col2">
+						<%= f.text_field :rate %>
 						<input type="text" id="total-room-price" />
 					</div>
 				</div>
 			</div>
 
 			<div class="spacer"></div>
+			<%= f.hidden_field :arrival_date %>
+			<%= f.hidden_field :departure_date %>
+
 
 			<div class="actions">
 				<div>
