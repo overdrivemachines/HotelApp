@@ -31,14 +31,24 @@ class TransactionsController < ApplicationController
     cc_number = params[:cc_number]
     cc_amount = params[:cc_amount].to_f
 
-    @transaction = Transaction.new
-    @transaction.reservation_id = params[:reservation_id]
+    @reservation = Reservation.find(params[:reservation_id])
+    
+    # Create the Transaction
+    @transaction = @reservation.transactions.new
 
     @transaction.description = "Payment Using Card " + cc_number.reverse[0..3].reverse
     @transaction.amount = cc_amount
 
     if @transaction.save
-      redirect_to @transaction
+      # Create the Guest only if there are no other guests
+      if (@reservation.guests.count == 0)
+        @guest = @reservation.guests.new
+        @guest.first_name = params[:first_name]
+        @guest.last_name = params[:last_name]
+        @guest.save
+      end
+      
+      redirect_to reservation_guests_path(@transaction.reservation_id)
     else
       render :index
     end
