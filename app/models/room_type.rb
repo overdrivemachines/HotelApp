@@ -19,4 +19,5 @@ class RoomType < ActiveRecord::Base
   belongs_to :property
   has_many :reservations
   has_many :rooms
+  has_many :room_type_rates
 end

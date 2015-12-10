@@ -8,7 +8,7 @@ class CreateReservations < ActiveRecord::Migration
       t.integer :children
       t.references :room_type, index: true, foreign_key: true
       t.references :room, index: true, foreign_key: true
-      t.float :rate
+      t.decimal  :rate, precision: 8, scale: 2
       t.text :notes
 
       t.timestamps null: false

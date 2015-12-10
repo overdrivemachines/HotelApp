@@ -37,7 +37,12 @@
             <div class="res-nights"><%= (reservation.departure_date - reservation.arrival_date).to_i %> Nights</div>
           </div>
           <div class="res-badges">
-            <span class="badge btn-red">Unpaid</span>
+            <span class="badge btn-red">
+              Unpaid 
+              <% if reservation.rate != nil %>
+                $<%= reservation.rate %>
+              <% end %>
+            </span>
             <% if (reservation.notes != nil) %>
               <span class="badge btn-orange">Note</span>
             <% end %>

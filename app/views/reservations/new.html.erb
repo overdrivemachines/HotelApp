@@ -36,11 +36,20 @@
 			<h5 class="title">Room Number</h5>
 			<ul id="rooms-container">
 				<% current_user.property.rooms.each do |room| %>
-					<li class="rc <%= room.room_type.code %>">
-						<%= f.radio_button :room_id, room.id, :"data-room-price" => "125", class: "hide" %>
-						<div class="rn"><%= room.room_number %></div>
-						<div class="rp">$125.00</div>
-					</li>
+					<!-- Check if there is a room rate -->
+					<% if @room_rates[room.id] != nil %>
+						<li class="rc <%= room.room_type.code %>">
+							<%= f.radio_button :room_id, room.id, :"data-room-price" => "#{@room_rates[room.id]}", class: "hide" %>							
+							<div class="rn"><%= room.room_number %></div>
+							<div class="rp">$<%= @room_rates[room.id] %></div>
+						</li>
+					<% else %>					
+						<li class="rc <%= room.room_type.code %>">
+							<%= f.radio_button :room_id, room.id, :"data-room-price" => "125", class: "hide" %>
+							<div class="rn"><%= room.room_number %></div>
+							<div class="rp">$125.00</div>
+						</li>
+					<% end %>
 				<% end %>
 			</ul>
 

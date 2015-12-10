@@ -50,7 +50,7 @@ rooms = Room.create(
 
 reservations = Reservation.create(
 	[
-		{ property_id: properties[0].id, arrival_date: Date.today, departure_date: Date.today + 5, adults: 2, children: 0, room_id: rooms[0], room_type_id: rooms[0].room_type.id, rate: 250 },
+		{ property_id: properties[0].id, arrival_date: Date.today, departure_date: Date.today + 1, adults: 2, children: 0, room_id: rooms[0], room_type_id: rooms[0].room_type.id, rate: 250 },
 		{ property_id: properties[0].id, arrival_date: Date.today, departure_date: Date.tomorrow, adults: 2, children: 0, room_id: rooms[1], room_type_id: rooms[1].room_type.id, rate: 170, notes: "Will arrive after 10pm" },
 		{ property_id: properties[0].id, arrival_date: Date.today, departure_date: Date.today + 8, adults: 2, children: 0, room_id: rooms[2], room_type_id: rooms[2].room_type.id, rate: 225, notes: "Will arrive after midnight" },
 		# Arriving tomorrow
@@ -75,5 +75,12 @@ guests = Guest.create(
 
 		{ reservation_id: reservations[2].id, first_name: "Joyce", last_name: "Estrada", phone1: "9098746587"}
 
+	]
+)
+
+rates = RoomTypeRate.create(
+	[
+		{room_type_id: rooms[0].id, on_date: Date.today, rate: 314.15}
+		
 	]
 )

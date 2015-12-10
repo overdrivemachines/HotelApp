@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151208044435) do
+ActiveRecord::Schema.define(version: 20151210023136) do
 
   create_table "guests", force: :cascade do |t|
     t.string   "first_name"
@@ -57,16 +57,26 @@ ActiveRecord::Schema.define(version: 20151208044435) do
     t.integer  "children"
     t.integer  "room_type_id"
     t.integer  "room_id"
-    t.float    "rate"
+    t.decimal  "rate",           precision: 8, scale: 2
     t.text     "notes"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.datetime "checked_in"
   end
 
   add_index "reservations", ["property_id"], name: "index_reservations_on_property_id"
   add_index "reservations", ["room_id"], name: "index_reservations_on_room_id"
   add_index "reservations", ["room_type_id"], name: "index_reservations_on_room_type_id"
+
+  create_table "room_type_rates", force: :cascade do |t|
+    t.integer  "room_type_id"
+    t.date     "on_date"
+    t.decimal  "rate",         precision: 8, scale: 2
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  add_index "room_type_rates", ["room_type_id"], name: "index_room_type_rates_on_room_type_id"
 
   create_table "room_types", force: :cascade do |t|
     t.integer  "property_id"
@@ -91,6 +101,16 @@ ActiveRecord::Schema.define(version: 20151208044435) do
 
   add_index "rooms", ["property_id"], name: "index_rooms_on_property_id"
   add_index "rooms", ["room_type_id"], name: "index_rooms_on_room_type_id"
+
+  create_table "transactions", force: :cascade do |t|
+    t.integer  "reservation_id"
+    t.string   "description"
+    t.decimal  "amount",         precision: 8, scale: 2
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  add_index "transactions", ["reservation_id"], name: "index_transactions_on_reservation_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

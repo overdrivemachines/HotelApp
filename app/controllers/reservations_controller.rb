@@ -95,10 +95,20 @@ class ReservationsController < ApplicationController
 		@reservation = Reservation.new(reservation_params)
 		@reservation.property_id = current_user.property_id
 		if @reservation.save
-			@primary_guest = @reservation.guests.build(guest_params)
-			@primary_guest.save
+			# @primary_guest = @reservation.guests.build(guest_params)
+			# @primary_guest.save
 			# TODO: Clear cookies
-			redirect_to edit_guest_path(@primary_guest)
+
+			# Create a new transaction
+			roomtrans = Transaction.new
+			roomtrans.reservation_id = @reservation.id
+			roomtrans.description = "Room Charge"
+			roomtrans.amount = @reservation.rate
+			roomtrans.save
+
+			redirect_to transactions_path
+
+			# redirect_to edit_guest_path(@primary_guest)
 			# format.json { render :show, status: :created, location: @reservation }1
 		else
 			render :new
@@ -140,7 +150,7 @@ class ReservationsController < ApplicationController
 			@guests = @reservation.guests
 
 			# TODO: logic for primary guest
-			@primary_guest = @guests.first
+			# @primary_guest = @guests.first
 		end
 
 		# Never trust parameters from the scary internet, only allow the white list through.

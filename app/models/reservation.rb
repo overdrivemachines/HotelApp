@@ -10,7 +10,7 @@
 #  children       :integer
 #  room_type_id   :integer
 #  room_id        :integer
-#  rate           :float
+#  rate           :decimal(8, 2)
 #  notes          :text
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
@@ -28,4 +28,5 @@ class Reservation < ActiveRecord::Base
   belongs_to :room_type
   belongs_to :room
   has_many :guests, dependent: :destroy
+  has_many :transactions
 end
