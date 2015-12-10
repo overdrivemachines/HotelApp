@@ -13,7 +13,8 @@ class ReservationsController < ApplicationController
 		if params[:arrival_date].present?
 			@arrival_date = Date.parse(params[:arrival_date])
 		end
-		@reservations = Reservation.where(property_id: current_user.property_id, arrival_date: @arrival_date)		
+		@reservations = Reservation.where(property_id: current_user.property_id, arrival_date: @arrival_date)
+		# @reservations = Reservation.all
 	end
 
 	# GET /reservations/1
@@ -45,8 +46,24 @@ class ReservationsController < ApplicationController
 			# TODO: Check if rooms are left
 		end
 
-		# Should be retreived from Price table
-		@reservation.rate = 65.00
+		# TODO: Find Average Price per night for every room
+		@room_rates = Hash.new
+		current_user.property.rooms.each do |room|
+			# Setting it to the price of just the first day
+
+			# Finding the rate from the table
+			rtr = room.room_type.room_type_rates.find_by(on_date: @reservation.arrival_date)
+			
+			if (rtr != nil)
+				# Rate was found in the table
+				@room_rates[room.id] = rtr.rate
+			else
+				# Unable to find the rate from the table
+				@room_rates[room.id] = 888
+			end			
+		end
+
+		@reservation.rate = 1000.00
 
 		@primary_guest = Guest.new
 	end
