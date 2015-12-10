@@ -92,18 +92,23 @@ class ReservationsController < ApplicationController
 
 	# POST /reservations
 	def create
-		@reservation = Reservation.new(rp)
+		@reservation = Reservation.new(reservation_params)
 		@reservation.property_id = current_user.property_id
 		if @reservation.save
 			# @primary_guest = @reservation.guests.build(guest_params)
 			# @primary_guest.save
 			# TODO: Clear cookies
 
-			# Create a new transaction
-			roomtrans = Transaction.new
-			roomtrans.reservation_id = @reservation.id
+			# Create a new transaction for Room Charge
+			roomtrans = @reservation.transactions.new
 			roomtrans.description = "Room Charge"
 			roomtrans.amount = @reservation.rate
+			roomtrans.save
+
+			# Create a new transaction for Room Tax
+			roomtrans = @reservation.transactions.new
+			roomtrans.description = "Room Tax (10%)"
+			roomtrans.amount = @reservation.rate * 0.10
 			roomtrans.save
 
 			redirect_to transactions_path
