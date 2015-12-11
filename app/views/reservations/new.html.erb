@@ -2,13 +2,13 @@
 <section id="section-main" class="section-reservation">
 	<div class="w800">
 		<div id="status-track">
-			<a class="complete" href="#">
-				<i class="fa fa-check-circle-o"></i>
+			<%= link_to reservations_new_dates_lookup_path, class: "complete" do %>
+				<i class="fa fa-calendar"></i>
 				<div class="lbl">Dates</div>
 				<div class="sub">
 					<%= @reservation.arrival_date.strftime('%b %d') %> - <%= @reservation.departure_date.strftime('%b %d') %>
 				</div>
-			</a>
+			<% end %>
 			<a class="current" href="#"><i class="fa fa-th-list"> </i>
 				<div class="lbl">Rooms</div>
 			</a>
@@ -21,7 +21,17 @@
 		</div>
 
 		<%= form_for(@reservation) do |f| %>
-			<h5 class="title">Filter By Room Type</h5>
+			<div class="field split">
+				<div>
+					<%= f.label :adults %>
+					<%= f.number_field :adults %>
+				</div>
+				<div>
+					<%= f.label :children %>
+					<%= f.number_field :children %>
+				</div>				
+			</div>
+			<label>Filter By Room Type</label>
 			<ul id="room-types-container">
 				<li class="rc is-selected" data-filter="*">
 					All
@@ -33,7 +43,7 @@
 				<% end %>
 			</ul>
 
-			<h5 class="title">Room Number</h5>
+			<label>Room Number</label>
 			<ul id="rooms-container">
 				<% current_user.property.rooms.each do |room| %>
 					<!-- Check if there is a room rate -->
@@ -41,37 +51,37 @@
 						<li class="rc <%= room.room_type.code %>">
 							<%= f.radio_button :room_id, room.id, :"data-room-price" => "#{@room_rates[room.id]}", class: "hide" %>							
 							<div class="rn"><%= room.room_number %></div>
-							<div class="rp">$<%= @room_rates[room.id] %></div>
+							<div class="rp"><%= number_to_currency(@room_rates[room.id]) %></div>
 						</li>
-					<% else %>					
+					<% else %>
+						<!-- Default Room Rate -->
 						<li class="rc <%= room.room_type.code %>">
 							<%= f.radio_button :room_id, room.id, :"data-room-price" => "125", class: "hide" %>
 							<div class="rn"><%= room.room_number %></div>
-							<div class="rp">$125.00</div>
+							<div class="rp"><%= number_to_currency(125) %></div>
 						</li>
 					<% end %>
 				<% end %>
 			</ul>
 
-			<h5 class="title">Price</h5>
+			<label>Price</label>
 			<div class="display-price">
 				<div class="dp-row">
 					<div class="col1"><b>ROOM</b></div>
 					<div class="col2">
-						<input type="text" id="room-price" />
+						<%= f.text_field :rate %>
 					</div>
 				</div>
 				<div class="dp-row">
 					<div class="col1">TAX (10%)</div>
 					<div class="col2">
-						<input type="text" id="tax" />
+						<input type="text" id="reservation_tax" />
 					</div>
 				</div>
 				<div class="dp-row">
 					<div class="col1"><b>TOTAL</b></div>
 					<div class="col2">
-						<%= f.text_field :rate %>
-						<input type="text" id="total-room-price" />
+						<input type="text" id="reservation_total" />
 					</div>
 				</div>
 			</div>
