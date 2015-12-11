@@ -23,15 +23,23 @@ class ReservationsController < ApplicationController
 	end
 
 	# GET /reservations/new
+	# Used in view:
+	# @reservation
+	# @room_rates - Rate for every room
+	# @room_rate_default - Default room rate
+	# @room_types
+	# @rooms - All available rooms
 	def new
+		current_property = current_user.property
 		# property_id of the new reservation will be set:
-		@reservation = current_user.property.reservations.new
+		@reservation = current_property.reservations.new
 
 		# Setting default values
 		@reservation.arrival_date = Date.today
 		@reservation.departure_date = Date.today + 1
 		@reservation.adults = 1
 		@reservation.children = 0
+		@reservation.rate = 1000.00
 
 		# Check if arrival date is in the params
 		if params[:arrival_date].present? && params[:departure_date].present?
@@ -42,13 +50,15 @@ class ReservationsController < ApplicationController
 			# Save the dates in the cookie
 			cookies[:arrival_date] = @reservation.arrival_date
 			cookies[:departure_date] = @reservation.departure_date
-
-			# TODO: Check if rooms are left
 		end
+
+		@room_types = current_property.room_types
 
 		# TODO: Find Average Price per night for every room
 		@room_rates = Hash.new
-		current_user.property.rooms.each do |room|
+		current_property.rooms.each do |room|
+			# TODO: Find average price
+
 			# Setting it to the price of just the first day
 
 			# Finding the rate from the table
@@ -63,9 +73,18 @@ class ReservationsController < ApplicationController
 			end			
 		end
 
-		@reservation.rate = 1000.00
+		@rooms = current_property.rooms
+		# TODO: Find only available rooms
+		# @rooms = Array.new
+		current_property.rooms.each do |room|
+			if (room.status == :ready)
 
-		@primary_guest = Guest.new
+			end
+		end
+
+		@room_rate_default = 777.0		
+
+		# @primary_guest = Guest.new
 	end
 
 	def dates_lookup
@@ -94,6 +113,7 @@ class ReservationsController < ApplicationController
 	def create
 		@reservation = Reservation.new(reservation_params)
 		@reservation.property_id = current_user.property_id
+		@reservation.room_type_id = @reservation.room.room_type_id
 		if @reservation.save
 			# @primary_guest = @reservation.guests.build(guest_params)
 			# @primary_guest.save
@@ -111,7 +131,7 @@ class ReservationsController < ApplicationController
 			roomtrans.amount = @reservation.rate * 0.10
 			roomtrans.save
 
-			redirect_to transactions_path
+			redirect_to reservation_transactions_path(@reservation)
 
 			# redirect_to edit_guest_path(@primary_guest)
 			# format.json { render :show, status: :created, location: @reservation }1
