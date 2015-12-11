@@ -1,6 +1,24 @@
-<h1>Editing Reservation</h1>
+<section id="section-main" class="section-reservation">
+	<div class="w800">
+		<div id="status-track">
+			<%= link_to reservations_new_dates_lookup_path, class: "complete" do %>
+				<i class="fa fa-calendar"></i>
+				<div class="lbl">Dates</div>
+				<div class="sub">
+					<%= @reservation.arrival_date.strftime('%b %d') %> - <%= @reservation.departure_date.strftime('%b %d') %>
+				</div>
+			<% end %>
+			<a class="current" href="#"><i class="fa fa-th-list"> </i>
+				<div class="lbl">Rooms</div>
+			</a>
+			<a class="future" href="#"><i class="fa fa-users"></i>
+				<div class="lbl">Payment</div>
+			</a>
+			<a class="future" href="#"><i class="fa fa-users"></i>
+				<div class="lbl">Guest Info</div>
+			</a>
+		</div>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', reservation_path(@reservation) %> |
-<%= link_to 'Back', reservations_path %>
+		<%= render 'form' %>
+	</div>
+</section>
