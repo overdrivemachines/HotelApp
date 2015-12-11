@@ -1,5 +1,5 @@
 class ReservationsController < ApplicationController
-	before_action :set_reservation_and_guests, only: [:show, :edit, :update, :destroy]
+	before_action :set_reservation, only: [:show, :edit, :update, :destroy]
 
 	# GET /reservations
 	# GET /reservations.json
@@ -52,37 +52,7 @@ class ReservationsController < ApplicationController
 			cookies[:departure_date] = @reservation.departure_date
 		end
 
-		@room_types = current_property.room_types
-
-		# TODO: Find Average Price per night for every room
-		@room_rates = Hash.new
-		current_property.rooms.each do |room|
-			# TODO: Find average price
-
-			# Setting it to the price of just the first day
-
-			# Finding the rate from the table
-			rtr = room.room_type.room_type_rates.find_by(on_date: @reservation.arrival_date)
-			
-			if (rtr != nil)
-				# Rate was found in the table
-				@room_rates[room.id] = rtr.rate
-			else
-				# Unable to find the rate from the table
-				@room_rates[room.id] = 888
-			end			
-		end
-
-		@rooms = current_property.rooms
-		# TODO: Find only available rooms
-		# @rooms = Array.new
-		current_property.rooms.each do |room|
-			if (room.status == :ready)
-
-			end
-		end
-
-		@room_rate_default = 777.0		
+		common
 
 		# @primary_guest = Guest.new
 	end
@@ -105,8 +75,9 @@ class ReservationsController < ApplicationController
 	end
 
 	# GET /reservations/1/edit
-	# set_reservation_and_guests called
+	# set_reservation called
 	def edit
+		common
 	end
 
 	# POST /reservations
@@ -168,14 +139,8 @@ class ReservationsController < ApplicationController
 
 	private
 		# Use callbacks to share common setup or constraints between actions.
-		def set_reservation_and_guests
-			# TODO: Check if user has access to view the reservation
-			# @property = Property.find(params[:property_id])
+		def set_reservation
 			@reservation = Reservation.find(params[:id])
-			@guests = @reservation.guests
-
-			# TODO: logic for primary guest
-			# @primary_guest = @guests.first
 		end
 
 		# Never trust parameters from the scary internet, only allow the white list through.
@@ -194,5 +159,40 @@ class ReservationsController < ApplicationController
 
 		def guest_params
 			params.require(:guest).permit(:first_name, :last_name)
+		end
+
+		def common
+			current_property = current_user.property
+			@room_types = current_property.room_types
+
+			# TODO: Find Average Price per night for every room
+			@room_rates = Hash.new
+			current_property.rooms.each do |room|
+				# TODO: Find average price
+
+				# Setting it to the price of just the first day
+
+				# Finding the rate from the table
+				rtr = room.room_type.room_type_rates.find_by(on_date: @reservation.arrival_date)
+				
+				if (rtr != nil)
+					# Rate was found in the table
+					@room_rates[room.id] = rtr.rate
+				else
+					# Unable to find the rate from the table
+					@room_rates[room.id] = 888
+				end			
+			end
+
+			@rooms = current_property.rooms
+			# TODO: Find only available rooms
+			# @rooms = Array.new
+			current_property.rooms.each do |room|
+				if (room.status == :ready)
+
+				end
+			end
+
+			@room_rate_default = 777.0
 		end
 end
