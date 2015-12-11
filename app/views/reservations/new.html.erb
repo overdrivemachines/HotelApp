@@ -1,4 +1,3 @@
-<%# render 'form' %>
 <section id="section-main" class="section-reservation">
 	<div class="w800">
 		<div id="status-track">
@@ -20,96 +19,6 @@
 			</a>
 		</div>
 
-		<%= form_for(@reservation) do |f| %>
-			<div class="field split">
-				<div>
-					<%= f.label :adults %>
-					<%= f.number_field :adults %>
-				</div>
-				<div>
-					<%= f.label :children %>
-					<%= f.number_field :children %>
-				</div>				
-			</div>
-			<label>Filter By Room Type</label>
-			<ul id="room-types-container">
-				<li class="rc is-selected" data-filter="*">
-					All
-				</li>
-				<% @room_types.each do |rt| %>
-					<li class="rc" data-filter=".<%= rt.code %>">
-						<%= rt.code %>
-					</li>
-				<% end %>
-			</ul>
-
-			<label>Room Number</label>
-			<ul id="rooms-container">
-				<!-- Unassigned Room -->
-				<li class="rc">
-					<%= f.radio_button :room_id, -1, :"data-room-price" => "#{@room_rate_default}", class: "hide" %>							
-					<div class="rn">--</div>
-					<div class="rp"><%= number_to_currency(@room_rate_default) %></div>
-				</li>
-				<% @rooms.each do |room| %>
-					<!-- Check if there is a room rate -->
-					<% if @room_rates[room.id] != nil %>
-						<li class="rc <%= room.room_type.code %>">
-							<%= f.radio_button :room_id, room.id, :"data-room-price" => "#{@room_rates[room.id]}", class: "hide" %>							
-							<div class="rn"><%= room.room_number %></div>
-							<div class="rp"><%= number_to_currency(@room_rates[room.id]) %></div>
-						</li>
-					<% else %>
-						<!-- Default Room Rate -->
-						<li class="rc <%= room.room_type.code %>">
-							<%= f.radio_button :room_id, room.id, :"data-room-price" => "#{@room_rate_default}", class: "hide" %>
-							<div class="rn"><%= room.room_number %></div>
-							<div class="rp"><%= number_to_currency(@room_rate_default) %></div>
-						</li>
-					<% end %>
-				<% end %>
-			</ul>
-
-			<label>Price</label>
-			<div class="display-price">
-				<div class="dp-row">
-					<div class="col1"><b>ROOM</b></div>
-					<div class="col2">
-						<%= f.text_field :rate %>
-					</div>
-				</div>
-				<div class="dp-row">
-					<div class="col1">TAX (10%)</div>
-					<div class="col2">
-						<input type="text" id="reservation_tax" />
-					</div>
-				</div>
-				<div class="dp-row">
-					<div class="col1"><b>TOTAL</b></div>
-					<div class="col2">
-						<input type="text" id="reservation_total" />
-					</div>
-				</div>
-			</div>
-
-			<div class="spacer"></div>
-			<%= f.hidden_field :arrival_date %>
-			<%= f.hidden_field :departure_date %>
-
-
-			<div class="actions">
-				<div>
-					<%= link_to "Cancel", welcome_index_path %>
-				</div>
-				<div>
-					<%= link_to reservations_new_dates_lookup_path, class: "btn btn-aqua" do %>
-						<i class="fa fa-angle-left fa"></i> Back
-					<% end %>
-					<%= button_tag class: "btn btn-aqua spacer-v" do %>
-						Save &amp; Continue <i class="fa fa-angle-right fa"></i>
-					<% end %>
-				</div>
-			</div>
-		<% end %>
+		<%= render 'form' %>
 	</div>
 </section>
