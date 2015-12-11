@@ -1,16 +1,16 @@
 /*
 http://codepen.io/overdrivemachines/pen/LGPyPp
 */
-
 /*ROOMS/////////////////////////*/
 
-#room-types-container, #rooms-container {
+#room-types-container,
+#rooms-container {
   display: flex;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
   margin-bottom: 1.667em;
 }
 
-li.rc {  
+li.rc {
   border: 1px solid #2EC4B6;
   margin: 0.667em 0.667em 0.667em 0.667em;
   border-radius: 4px;
@@ -21,7 +21,8 @@ li.rc {
   font-weight: 700;
 }
 
-li.rc.is-selected, .rc:hover {
+li.rc.is-selected,
+.rc:hover {
   background: #2EC4B6;
   color: #FDFFFC;
 }
@@ -29,9 +30,11 @@ li.rc.is-selected, .rc:hover {
 .rc > .iradio_square-blue {
   display: none;
 }
+
 .rc > .rn {
   font-size: 2em;
 }
+
 .rc > .rp {
   font-weight: 400;
   margin-top: 0.667em;
@@ -40,37 +43,31 @@ li.rc.is-selected, .rc:hover {
 .display-price {
   padding-left: 1em;
 }
+
 .dp-row {
   padding: 0.5em 0;
   width: 13em;
   display: flex;
 }
+
 .dp-row > div {
   flex-grow: 1;
   flex-basis: 0;
   align-self: center;
 }
 
-
-.col1 {
-  
-}
+.col1 {}
 
 .col2 {
-  text-align: right; 
+  text-align: right;
 }
 
-#room-price, #total-room-price, #tax {
+#reservation_rate,
+#reservation_tax,
+#reservation_total {
   border: none;
   padding: 0;
   margin: 0;
   text-align: right;
   font-size: 16px;
 }
-
-
-
-
-
-
-
