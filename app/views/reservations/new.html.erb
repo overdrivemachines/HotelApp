@@ -36,7 +36,7 @@
 				<li class="rc is-selected" data-filter="*">
 					All
 				</li>
-				<% current_user.property.room_types.each do |rt| %>
+				<% @room_types.each do |rt| %>
 					<li class="rc" data-filter=".<%= rt.code %>">
 						<%= rt.code %>
 					</li>
@@ -45,7 +45,13 @@
 
 			<label>Room Number</label>
 			<ul id="rooms-container">
-				<% current_user.property.rooms.each do |room| %>
+				<!-- Unassigned Room -->
+				<li class="rc">
+					<%= f.radio_button :room_id, -1, :"data-room-price" => "#{@room_rate_default}", class: "hide" %>							
+					<div class="rn">--</div>
+					<div class="rp"><%= number_to_currency(@room_rate_default) %></div>
+				</li>
+				<% @rooms.each do |room| %>
 					<!-- Check if there is a room rate -->
 					<% if @room_rates[room.id] != nil %>
 						<li class="rc <%= room.room_type.code %>">
@@ -56,9 +62,9 @@
 					<% else %>
 						<!-- Default Room Rate -->
 						<li class="rc <%= room.room_type.code %>">
-							<%= f.radio_button :room_id, room.id, :"data-room-price" => "125", class: "hide" %>
+							<%= f.radio_button :room_id, room.id, :"data-room-price" => "#{@room_rate_default}", class: "hide" %>
 							<div class="rn"><%= room.room_number %></div>
-							<div class="rp"><%= number_to_currency(125) %></div>
+							<div class="rp"><%= number_to_currency(@room_rate_default) %></div>
 						</li>
 					<% end %>
 				<% end %>
@@ -100,7 +106,7 @@
 						<i class="fa fa-angle-left fa"></i> Back
 					<% end %>
 					<%= button_tag class: "btn btn-aqua spacer-v" do %>
-						Continue <i class="fa fa-angle-right fa"></i>
+						Save &amp; Continue <i class="fa fa-angle-right fa"></i>
 					<% end %>
 				</div>
 			</div>
