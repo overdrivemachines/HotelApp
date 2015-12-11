@@ -4,15 +4,17 @@
       <a class="complete" href="#">
         <i class="fa fa-check-circle-o"></i>
         <div class="lbl">Dates</div>
-        <div class="sub">Jan 21 - Jan 22</div>
+        <div class="sub"><%= @reservation.arrival_date.strftime('%b %d') %> - <%= @reservation.departure_date.strftime('%b %d') %></div>
       </a>
       <a class="complete" href="#"><i class="fa fa-th-list"> </i>
         <div class="lbl">Rooms</div>
-        <div class="sub">NQ1 - #111</div>
+        <div class="sub">#<%= @reservation.room.room_number %></div>
       </a>
-      <a class="complete" href="#"><i class="fa fa-credit-card"></i>
+      <%= link_to reservation_transactions_path(@reservation), class: "complete" do %>
+        <i class="fa fa-credit-card"></i>
         <div class="lbl">Payment</div>
-      </a>
+        <div class="sub"><%= number_to_currency(@reservation.rate) %></div>      
+      <% end %>
       <a class="current" href="#"><i class="fa fa-users"></i>
         <div class="lbl">Guest Info</div>
       </a>
@@ -60,23 +62,24 @@
     </table>
 
     <%= form_for [@reservation, @guest] do |f| %>
+    <%= f.hidden_field :reservation_id %>
       <div class="field split">
         <div class="equal">
-          <label for="">First Name</label>
-          <input type="text" />
+          <%= f.label :first_name %>
+          <%= f.text_field :first_name %>
         </div>
         <div class="equal">
-          <label for="">Last Name</label>
-          <input type="text" />
+          <%= f.label :last_name %>
+          <%= f.text_field :last_name %>
         </div>
       </div>
       <div class="field">
-        <label for="">Phone</label>
-        <input type="text" />
+        <%= f.label :phone1 %>
+        <%= f.text_field :phone1 %>
       </div>
       <div class="field">
-        <label for="">Email</label>
-        <input type="text" />
+        <%= f.label :email %>
+        <%= f.text_field :email %>
       </div>
 
       <%= button_tag class: "btn" do %>
@@ -93,7 +96,10 @@
           <%= link_to reservation_transactions_path(@reservation), class: "btn btn-aqua" do %>
             <i class="fa fa-angle-left fa"></i> Back
           <% end %>
-        <a class="btn btn-aqua spacer-v" href="#">Finish </a></div>
+
+          <%= link_to "Finish", reservations_path, class: "btn btn-aqua spacer-v" %>
+        
+        </div>
       </div>
 
     <% end %>
