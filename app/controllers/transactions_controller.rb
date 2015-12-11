@@ -32,26 +32,30 @@ class TransactionsController < ApplicationController
     cc_amount = params[:cc_amount].to_f
 
     @reservation = Reservation.find(params[:reservation_id])
-    
-    # Create the Transaction
-    @transaction = @reservation.transactions.new
 
-    @transaction.description = "Payment Using Card " + cc_number.reverse[0..3].reverse
-    @transaction.amount = cc_amount
-
-    if @transaction.save
-      # Create the Guest only if there are no other guests
-      if (@reservation.guests.count == 0)
-        @guest = @reservation.guests.new
-        @guest.first_name = params[:first_name]
-        @guest.last_name = params[:last_name]
-        @guest.save
-      end
-      
-      redirect_to reservation_guests_path(@transaction.reservation_id)
+    if (cc_number.size == 0) || (cc_amount == 0)
+      redirect_to reservation_guests_path(@reservation)
     else
-      render :index
-    end
+      # Create the Transaction
+      @transaction = @reservation.transactions.new
+
+      @transaction.description = "Payment Using Card " + cc_number.reverse[0..3].reverse
+      @transaction.amount = cc_amount
+
+      if @transaction.save
+        # Create the Guest only if there are no other guests
+        if (@reservation.guests.count == 0)
+          @guest = @reservation.guests.new
+          @guest.first_name = params[:cc_first_name]
+          @guest.last_name = params[:cc_last_name]
+          @guest.save
+        end
+        
+        redirect_to reservation_guests_path(@transaction.reservation_id)
+      else
+        render :index
+      end
+    end    
   end
 
   # PATCH/PUT /transactions/1
