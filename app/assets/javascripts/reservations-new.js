@@ -33,7 +33,7 @@ $(document).ready(function() {
     rd = $(this).find("input[type='radio']")[0];
     rd.checked = true;
     
-    $('input').iCheck('update');
+    // $('input').iCheck('update');
     
     /*var price = $(this).children("input[name='reservation[room_id]']:radio").eq(0).data('room-price');*/
     var price = rd.dataset.roomPrice;
@@ -46,10 +46,15 @@ $(document).ready(function() {
     
     // Set the values
     price = numeral(price).format('$0,0.00');
-    $("#room-price").val(price);
+    $("#reservation_rate").val(price);
     tax = numeral(tax).format('$0,0.00');
-    $("#tax").val(tax);
+    $("#reservation_tax").val(tax);
     total = numeral(total).format('$0,0.00');
-    $("#reservation_rate").val(total);
+    $("#reservation_total").val(total);
   });
+
+  // Select the 1st room by default
+  $("#rooms-container .rc:first-child").click();
+  // $("#rooms-container .rc:first-child input:radio:first").prop("checked", true).trigger("click");
+  // $("#rooms-container .rc:first-child").addClass('is-selected');
 });
