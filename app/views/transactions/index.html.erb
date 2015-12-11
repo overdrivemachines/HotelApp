@@ -4,11 +4,13 @@
 			<a class="complete" href="#">
 				<i class="fa fa-check-circle-o"></i>
 				<div class="lbl">Dates</div>
-				<div class="sub">Jan 21 - Jan 22</div>
+				<div class="sub">
+					<%= @reservation.arrival_date.strftime('%b %d') %> - <%= @reservation.departure_date.strftime('%b %d') %>
+				</div>
 			</a>
 			<a class="complete" href="#"><i class="fa fa-th-list"> </i>
 				<div class="lbl">Rooms</div>
-				<div class="sub">NQ1 - #111</div>
+				<div class="sub">#<%= @reservation.room.room_number %></div>
 			</a>
 			<a class="current" href="#"><i class="fa fa-credit-card"></i>
 				<div class="lbl">Payment</div>
@@ -33,19 +35,19 @@
 						<% transaction_total -= t.amount %>
 						<tr class="trans-item payment">
 							<td class="desc"><i><%= t.description %></i></td>
-							<td class="amount"><%= t.amount %></td>
+							<td class="amount"><%= number_to_currency(t.amount) %></td>
 						</tr>
 					<% else %>
 						<% transaction_total += t.amount %>
 						<tr class="trans-item">
 							<td class="desc"><%= t.description %></td>
-							<td class="amount"><%= t.amount %></td>
+							<td class="amount"><%= number_to_currency(t.amount) %></td>
 						</tr>
 					<% end %>
 				<% end %>
 				<tr class="trans-item">
 					<td class="desc"><b>Balance</b></td>
-					<td class="amount"><b><%= transaction_total %></b></td>
+					<td class="amount"><b><%= number_to_currency(transaction_total) %></b></td>
 				</tr>
 			</tbody>
 		</table>
@@ -93,7 +95,9 @@
 			<div class="actions">
 				<div><a href="">Cancel</a></div>
 				<div>
-					<a class="btn btn-aqua" href="#"><i class="fa fa-angle-left fa"></i> Back</a>
+					<%= link_to edit_reservation_path(@reservation), class: "btn btn-aqua" do %>
+					<i class="fa fa-angle-left fa"></i> Back
+					<% end %>
 
 					<%= button_tag class: "btn btn-aqua spacer-v" do %>
 						Continue <i class="fa fa-angle-right fa"></i>
