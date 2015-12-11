@@ -1,61 +1,91 @@
 <%= form_for(@reservation) do |f| %>
-  <% if @reservation.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+  <div class="field split">
+    <div>
+      <%= f.label :adults %>
+      <%= f.number_field :adults %>
+    </div>
+    <div>
+      <%= f.label :children %>
+      <%= f.number_field :children %>
+    </div>        
+  </div>
+  <label>Filter By Room Type</label>
+  <ul id="room-types-container">
+    <li class="rc is-selected" data-filter="*">
+      All
+    </li>
+    <% @room_types.each do |rt| %>
+      <li class="rc" data-filter=".<%= rt.code %>">
+        <%= rt.code %>
+      </li>
+    <% end %>
+  </ul>
 
-      <ul>
-      <% @reservation.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+  <label>Room Number</label>
+  <ul id="rooms-container">
+    <!-- Unassigned Room -->
+    <li class="rc">
+      <%= f.radio_button :room_id, -1, :"data-room-price" => "#{@room_rate_default}", class: "hide" %>              
+      <div class="rn">--</div>
+      <div class="rp"><%= number_to_currency(@room_rate_default) %></div>
+    </li>
+    <% @rooms.each do |room| %>
+      <!-- Check if there is a room rate -->
+      <% if @room_rates[room.id] != nil %>
+        <li class="rc <%= room.room_type.code %>">
+          <%= f.radio_button :room_id, room.id, :"data-room-price" => "#{@room_rates[room.id]}", class: "hide" %>             
+          <div class="rn"><%= room.room_number %></div>
+          <div class="rp"><%= number_to_currency(@room_rates[room.id]) %></div>
+        </li>
+      <% else %>
+        <!-- Default Room Rate -->
+        <li class="rc <%= room.room_type.code %>">
+          <%= f.radio_button :room_id, room.id, :"data-room-price" => "#{@room_rate_default}", class: "hide" %>
+          <div class="rn"><%= room.room_number %></div>
+          <div class="rp"><%= number_to_currency(@room_rate_default) %></div>
+        </li>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <% end %>
+  </ul>
 
-  <div class="field">
-    <%= f.label :arrival_date %><br>
-    <%= f.date_select :arrival_date %>
-  </div>
-  <div class="field">
-    <%= f.label :departure_date %><br>
-    <%= f.date_select :departure_date %>
-  </div>
-  <div class="field">
-    <%= f.label :adults %><br>
-    <%= f.number_field :adults %>
-  </div>
-  <div class="field">
-    <%= f.label :children %><br>
-    <%= f.number_field :children %>
-  </div>
-  <div class="field">
-    <%= f.label :room_type_id %><br>
-    <%= f.collection_select(:room_type_id, current_user.property.room_types, :id, :name) %>
-  </div>
-  <div class="field">
-    <%= f.label :room_id %><br>
-    <%= f.collection_select(:room_id, current_user.property.rooms, :id, :room_number, include_blank: true) %>
-  </div>
-  <div class="field">
-    <%= f.label :rate %><br>
-    <%= f.text_field :rate %>
-  </div>
-  <div class="field">
-    <%= f.label :notes %><br>
-    <%= f.text_area :notes %>
+  <label>Price</label>
+  <div class="display-price">
+    <div class="dp-row">
+      <div class="col1"><b>ROOM</b></div>
+      <div class="col2">
+        <%= f.text_field :rate %>
+      </div>
+    </div>
+    <div class="dp-row">
+      <div class="col1">TAX (10%)</div>
+      <div class="col2">
+        <input type="text" id="reservation_tax" />
+      </div>
+    </div>
+    <div class="dp-row">
+      <div class="col1"><b>TOTAL</b></div>
+      <div class="col2">
+        <input type="text" id="reservation_total" />
+      </div>
+    </div>
   </div>
 
-  <%= fields_for :guest, @primary_guest do |guest_fields| %>
-    <div class="field">
-      <%= guest_fields.label :first_name %>
-      <%= guest_fields.text_field :first_name %>
-    </div>
-    <div class="field">
-      <%= guest_fields.label :last_name %>
-      <%= guest_fields.text_field :last_name %>
-    </div>
-  <% end %>
+  <div class="spacer"></div>
+  <%= f.hidden_field :arrival_date %>
+  <%= f.hidden_field :departure_date %>
+
 
   <div class="actions">
-    <%= f.submit %>
+    <div>
+      <%= link_to "Cancel", reservations_path %>
+    </div>
+    <div>
+      <%= link_to reservations_new_dates_lookup_path, class: "btn btn-aqua" do %>
+        <i class="fa fa-angle-left fa"></i> Back
+      <% end %>
+      <%= button_tag class: "btn btn-aqua spacer-v" do %>
+        Save &amp; Continue <i class="fa fa-angle-right fa"></i>
+      <% end %>
+    </div>
   </div>
 <% end %>
