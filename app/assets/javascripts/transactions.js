@@ -2,7 +2,7 @@
 http://jessepollak.github.io/card/
 */
 
-$( document ).ready(function() {
+$(document).ready(function() {
 	$('form').card({
 		container: '.card-wrapper',
 		formSelectors: {
