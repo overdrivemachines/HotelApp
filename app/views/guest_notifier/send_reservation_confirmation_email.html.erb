@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Thank you making a reservation, <%= @guest.first_name %> <%= @guest.last_name %>!</h1>
+    <p>Reservation Details:</p>
+    <p>Check In: <%= @guest.reservation.arrival_date %></p>
+    <p>Check Out: <%= @guest.reservation.departure_date %></p>
+    <p>Have a great day!</p>
+  </body>
+</html>
