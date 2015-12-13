@@ -16,6 +16,13 @@ gem 'coffee-rails', '~> 4.1.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+
+# The jquery-turbolinks gem it will bind the Rails Turbolinks events to the 
+# document.ready events so you can write your jQuery in the usual way.
+# http://stackoverflow.com/questions/18770517/rails-4-how-to-use-document-ready-with-turbo-links
+# http://stackoverflow.com/questions/18769109/rails-4-turbo-link-prevents-jquery-scripts-from-working/18770219#18770219
+gem 'jquery-turbolinks'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -37,6 +44,9 @@ gem 'devise'
 
 # Font Awesome
 gem 'font-awesome-rails'
+
+# https://launchschool.com/blog/handling-emails-in-rails
+gem 'figaro'
 
 group :development, :test do
 	# Call 'byebug' anywhere in the code to stop execution and get a debugger console
