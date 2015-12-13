@@ -25,7 +25,7 @@
   <ul id="rooms-container">
     <!-- Unassigned Room -->
     <li class="rc">
-      <%= f.radio_button :room_id, -1, :"data-room-price" => "#{@room_rate_default}", class: "hide" %>              
+      <%= f.radio_button :room_id, "", :"data-room-price" => "#{@room_rate_default}", class: "hide" %>              
       <div class="rn">--</div>
       <div class="rp"><%= number_to_currency(@room_rate_default) %></div>
     </li>
