@@ -50,10 +50,14 @@
         </div>
         <div class="res-actions">
           <div>
-            <%= link_to "View", reservation_path(reservation) %>
+            <!-- Change link for Check In to reservation#checkin -->
+            <%= link_to "Check In", reservation_path(reservation) %>
           </div>
           <div>
             <%= link_to "Edit", edit_reservation_path(reservation) %>
+          </div>
+          <div>
+            <%= link_to "Cancel", reservation, method: :delete, data: { confirm: 'Are you sure?' } %>
           </div>
         </div>
       </li>
