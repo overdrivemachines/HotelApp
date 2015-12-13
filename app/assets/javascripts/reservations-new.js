@@ -1,8 +1,3 @@
-/*
-https://coolors.co/app/011627-fdfffc-2ec4b6-e71d36-ff9f1c
-
-*/
-
 $(document).ready(function() {
   // init Isotope
   var $grid = $('#rooms-container').isotope({
