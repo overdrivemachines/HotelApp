@@ -4,6 +4,7 @@ class CreateTransactions < ActiveRecord::Migration
       t.references :reservation, index: true, foreign_key: true
       t.string :description
       t.decimal :amount, precision: 8, scale: 2
+      t.integer :type
 
       t.timestamps null: false
     end

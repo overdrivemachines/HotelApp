@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(version: 20151210023136) do
     t.integer  "reservation_id"
     t.string   "description"
     t.decimal  "amount",         precision: 8, scale: 2
+    t.integer  "type"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
   end
