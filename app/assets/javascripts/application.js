@@ -11,11 +11,13 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
-//= require turbolinks
 //= require isotope.pkgd
 //= require numeral.min
+//= require jquery.card
 //= require_tree .
+//= require turbolinks
 
 $(document).ready(function(){
   $('input').iCheck({
