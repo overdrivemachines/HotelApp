@@ -36,23 +36,23 @@ room_types = RoomType.create(
 
 rooms = Room.create(
 	[
-		{ property_id: properties[0].id, room_number: 101, room_type_id: room_types[0].id, status: :clean },
-		{ property_id: properties[0].id, room_number: 102, room_type_id: room_types[0].id, status: :clean },
-		{ property_id: properties[0].id, room_number: 103, room_type_id: room_types[0].id, status: :clean },
-		{ property_id: properties[0].id, room_number: 104, room_type_id: room_types[1].id, status: :clean },
-		{ property_id: properties[0].id, room_number: 105, room_type_id: room_types[2].id, status: :clean },
-		{ property_id: properties[0].id, room_number: 106, room_type_id: room_types[3].id, status: :clean },
+		{ property_id: properties[0].id, room_number: 101, room_type_id: room_types[0].id, status: :ready },
+		{ property_id: properties[0].id, room_number: 102, room_type_id: room_types[0].id, status: :ready },
+		{ property_id: properties[0].id, room_number: 103, room_type_id: room_types[0].id, status: :ready },
+		{ property_id: properties[0].id, room_number: 104, room_type_id: room_types[1].id, status: :ready },
+		{ property_id: properties[0].id, room_number: 105, room_type_id: room_types[2].id, status: :ready },
+		{ property_id: properties[0].id, room_number: 106, room_type_id: room_types[3].id, status: :ready },
 
-		{ property_id: properties[1].id, room_number: 10, room_type_id: properties[1].room_types.first.id, status: :clean },
-		{ property_id: properties[1].id, room_number: 11, room_type_id: properties[1].room_types.last.id, status: :clean }
+		{ property_id: properties[1].id, room_number: 10, room_type_id: properties[1].room_types.first.id, status: :ready },
+		{ property_id: properties[1].id, room_number: 11, room_type_id: properties[1].room_types.last.id, status: :ready }
 	]
 )
 
 reservations = Reservation.create(
 	[
-		{ property_id: properties[0].id, arrival_date: Date.today, departure_date: Date.today + 1, adults: 2, children: 0, room_id: rooms[0], room_type_id: rooms[0].room_type.id, rate: 250 },
-		{ property_id: properties[0].id, arrival_date: Date.today, departure_date: Date.tomorrow, adults: 2, children: 0, room_id: rooms[1], room_type_id: rooms[1].room_type.id, rate: 170, notes: "Will arrive after 10pm" },
-		{ property_id: properties[0].id, arrival_date: Date.today, departure_date: Date.today + 8, adults: 2, children: 0, room_id: rooms[2], room_type_id: rooms[2].room_type.id, rate: 225, notes: "Will arrive after midnight" },
+		{ property_id: properties[0].id, arrival_date: Date.today, departure_date: Date.today + 1, adults: 2, children: 0, room_id: rooms[0].id, room_type_id: rooms[0].room_type.id, rate: 250 },
+		{ property_id: properties[0].id, arrival_date: Date.today, departure_date: Date.tomorrow, adults: 2, children: 0, room_id: rooms[1].id, room_type_id: rooms[1].room_type.id, rate: 170, notes: "Will arrive after 10pm" },
+		{ property_id: properties[0].id, arrival_date: Date.today, departure_date: Date.today + 8, adults: 2, children: 0, room_id: rooms[2].id, room_type_id: rooms[2].room_type.id, rate: 225, notes: "Will arrive after midnight" },
 		# Arriving tomorrow
 		{ property_id: properties[0].id, arrival_date: Date.today + 1, departure_date: Date.today + 8, adults: 2, children: 0, room_type_id: room_types[1].id, rate: 525, notes: "Will arrive after midnight" },
 		{ property_id: properties[0].id, arrival_date: Date.today + 1, departure_date: Date.today + 8, adults: 2, children: 0, room_type_id: room_types[1].id, rate: 465, notes: "Will arrive after midnight" },
@@ -68,12 +68,12 @@ reservations = Reservation.create(
 
 guests = Guest.create(
 	[
-		{ reservation_id: reservations[0].id, first_name: "Doris", last_name: "Chen", phone1: "5309865678"},
-		{ reservation_id: reservations[0].id, first_name: "Jerry", last_name: "Morales", phone1: "9165687965"},
+		{ reservation_id: reservations[0].id, first_name: "Doris", last_name: "Chen", phone1: "5309865678", email: "abc@abc.com"},
+		{ reservation_id: reservations[0].id, first_name: "Jerry", last_name: "Morales", phone1: "9165687965", email: "abc@abc.com"},
 
-		{ reservation_id: reservations[1].id, first_name: "Russel", last_name: "Gilbert", phone1: "4156879455"},
+		{ reservation_id: reservations[1].id, first_name: "Russel", last_name: "Gilbert", phone1: "4156879455", email: "abc@abc.com"},
 
-		{ reservation_id: reservations[2].id, first_name: "Joyce", last_name: "Estrada", phone1: "9098746587"}
+		{ reservation_id: reservations[2].id, first_name: "Joyce", last_name: "Estrada", phone1: "9098746587", email: "abc@abc.com"}
 
 	]
 )
