@@ -14,7 +14,6 @@ class ReservationsController < ApplicationController
 			@arrival_date = Date.parse(params[:arrival_date])
 		end
 		@reservations = Reservation.where(property_id: current_user.property_id, arrival_date: @arrival_date)
-		# @reservations = Reservation.all
 	end
 
 	# GET /reservations/1
@@ -84,7 +83,9 @@ class ReservationsController < ApplicationController
 	def create
 		@reservation = Reservation.new(reservation_params)
 		@reservation.property_id = current_user.property_id
-		@reservation.room_type_id = @reservation.room.room_type_id
+		if (@reservation.room != nil)
+			@reservation.room_type_id = @reservation.room.room_type_id
+		end
 		if @reservation.save
 			# @primary_guest = @reservation.guests.build(guest_params)
 			# @primary_guest.save
@@ -115,14 +116,10 @@ class ReservationsController < ApplicationController
 	# PATCH/PUT /reservations/1.json
 	# set_reservation_and_guests called
 	def update
-		respond_to do |format|
-			if (@reservation.update(reservation_params)) && (@primary_guest.update(guest_params))
-				format.html { redirect_to property_reservation_path(@reservation.property, @reservation), notice: 'Reservation was successfully updated.' }
-				format.json { render :show, status: :ok, location: @reservation }
-			else
-				format.html { render :edit }
-				format.json { render json: @reservation.errors, status: :unprocessable_entity }
-			end
+		if (@reservation.update(reservation_params))
+			redirect_to reservation_transactions_path(@reservation)
+		else
+			render :edit
 		end
 	end
 
@@ -131,10 +128,7 @@ class ReservationsController < ApplicationController
 	# set_reservation_and_guests called
 	def destroy
 		@reservation.destroy
-		respond_to do |format|
-			format.html { redirect_to property_reservations_path(current_user.property), notice: 'Reservation was successfully destroyed.' }
-			format.json { head :no_content }
-		end
+		redirect_to reservations_path
 	end
 
 	private
