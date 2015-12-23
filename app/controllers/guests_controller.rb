@@ -4,7 +4,9 @@ class GuestsController < ApplicationController
   # GET /guests
   # GET /guests.json
   def index
-    @guests = Guest.all
+    @reservation = Reservation.find(params[:reservation_id])
+    @guests = @reservation.guests
+    @guest = @reservation.guests.new
   end
 
   # GET /guests/1
@@ -31,7 +33,7 @@ class GuestsController < ApplicationController
 
     respond_to do |format|
       if @guest.save
-        format.html { redirect_to @guest, notice: 'Guest was successfully created.' }
+        format.html { redirect_to reservation_guests_path(@guest.reservation_id), notice: 'Guest was successfully created.' }
         format.json { render :show, status: :created, location: @guest }
       else
         format.html { render :new }
@@ -57,9 +59,10 @@ class GuestsController < ApplicationController
   # DELETE /guests/1
   # DELETE /guests/1.json
   def destroy
+    @res = @guest.reservation
     @guest.destroy
     respond_to do |format|
-      format.html { redirect_to guests_url, notice: 'Guest was successfully destroyed.' }
+      format.html { redirect_to reservation_guests_path(@res), notice: 'Guest was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
