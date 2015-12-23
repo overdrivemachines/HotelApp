@@ -28,5 +28,6 @@ class Reservation < ActiveRecord::Base
   belongs_to :room_type
   belongs_to :room
   has_many :guests, dependent: :destroy
-  has_many :transactions
+  has_many :transactions, dependent: :destroy
+  # TODO: Void Transactions
 end
