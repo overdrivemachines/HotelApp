@@ -9,14 +9,6 @@
 #                               PATCH  /room_type_rates/:id(.:format)                           room_type_rates#update
 #                               PUT    /room_type_rates/:id(.:format)                           room_type_rates#update
 #                               DELETE /room_type_rates/:id(.:format)                           room_type_rates#destroy
-#                        guests GET    /guests(.:format)                                        guests#index
-#                               POST   /guests(.:format)                                        guests#create
-#                     new_guest GET    /guests/new(.:format)                                    guests#new
-#                    edit_guest GET    /guests/:id/edit(.:format)                               guests#edit
-#                         guest GET    /guests/:id(.:format)                                    guests#show
-#                               PATCH  /guests/:id(.:format)                                    guests#update
-#                               PUT    /guests/:id(.:format)                                    guests#update
-#                               DELETE /guests/:id(.:format)                                    guests#destroy
 #                         rooms GET    /rooms(.:format)                                         rooms#index
 #                               POST   /rooms(.:format)                                         rooms#create
 #                      new_room GET    /rooms/new(.:format)                                     rooms#new
@@ -50,6 +42,14 @@
 #                               PATCH  /transactions/:id(.:format)                              transactions#update
 #                               PUT    /transactions/:id(.:format)                              transactions#update
 #                               DELETE /transactions/:id(.:format)                              transactions#destroy
+#            reservation_guests GET    /reservations/:reservation_id/guests(.:format)           guests#index
+#                               POST   /reservations/:reservation_id/guests(.:format)           guests#create
+#         new_reservation_guest GET    /reservations/:reservation_id/guests/new(.:format)       guests#new
+#                    edit_guest GET    /guests/:id/edit(.:format)                               guests#edit
+#                         guest GET    /guests/:id(.:format)                                    guests#show
+#                               PATCH  /guests/:id(.:format)                                    guests#update
+#                               PUT    /guests/:id(.:format)                                    guests#update
+#                               DELETE /guests/:id(.:format)                                    guests#destroy
 #                  reservations GET    /reservations(.:format)                                  reservations#index
 #                               POST   /reservations(.:format)                                  reservations#create
 #               new_reservation GET    /reservations/new(.:format)                              reservations#new
